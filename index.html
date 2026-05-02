@@ -95,19 +95,6 @@ h2 {
     color: #e5e5e5;
 }
 
-/* ===== CONTACT ===== */
-.contact {
-    text-align: center;
-    margin: 80px 0;
-    padding: 40px 20px;
-    border-top: 1px solid #1a1a1a;
-}
-
-.contact p {
-    font-size: 18px;
-    color: #c2c2c2;
-}
-
 /* ===== FORM ELEMENTS ===== */
 label {
     display: block;
@@ -175,12 +162,12 @@ footer a {
 
         <div class="card">
             <h3>Full Detail</h3>
-            <p>Complete interior + exterior package for a full refresh.</p>
+            <p>Complete interior + exterior package.</p>
         </div>
 
         <div class="card">
-            <h3>Add‑ons</h3>
-            <p>Headlight restoration, engine bay cleaning, polishing.</p>
+            <h3>Refresh Package</h3>
+            <p>Full restoration — returns your car to like‑new condition.</p>
         </div>
 
     </div>
@@ -194,17 +181,22 @@ footer a {
 
         <div class="card">
             <h3>Exterior Detail</h3>
-            <p class="price">$80 – $150</p>
+            <p class="price">$80 – $130</p>
         </div>
 
         <div class="card">
             <h3>Interior Detail</h3>
-            <p class="price">$165 – $300</p>
+            <p class="price">$165 – $250</p>
         </div>
 
         <div class="card">
             <h3>Full Detail</h3>
-            <p class="price">$325 – $450</p>
+            <p class="price">$300 – $425</p>
+        </div>
+
+        <div class="card">
+            <h3>Refresh Package</h3>
+            <p class="price">$500 – $600</p>
         </div>
 
     </div>
@@ -214,51 +206,51 @@ footer a {
 <section>
     <h2>Build Your Detail Package</h2>
 
+    <!-- Base Service -->
     <div class="card">
         <h3>Select Base Service</h3>
 
-        <label>
-            <input type="radio" name="base" value="80" onclick="updateTotal()">
-            Exterior Detail — $80+
-        </label>
-
-        <label>
-            <input type="radio" name="base" value="165" onclick="updateTotal()">
-            Interior Detail — $165+
-        </label>
-
-        <label>
-            <input type="radio" name="base" value="325" onclick="updateTotal()">
-            Full Detail — $325+
-        </label>
+        <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
+        <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
+        <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
+        <label><input type="radio" name="base" value="refresh" onclick="updateTotal()">Refresh Package</label>
     </div>
 
+    <!-- Vehicle Size -->
+    <div class="card" style="margin-top:25px;">
+        <h3>Vehicle Size</h3>
+
+        <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
+        <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
+        <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
+    </div>
+
+    <!-- Dirtiness Level -->
+    <div class="card" style="margin-top:25px;">
+        <h3>Dirtiness Level</h3>
+
+        <label><input type="radio" name="dirt" value="low" onclick="updateTotal()">Low (0%)</label>
+        <label><input type="radio" name="dirt" value="medium" onclick="updateTotal()">Medium (5–10%)</label>
+        <label><input type="radio" name="dirt" value="high" onclick="updateTotal()">High (10–15%)</label>
+        <label><input type="radio" name="dirt" value="uncleanable" onclick="updateTotal()">Uncleanable (20%)</label>
+    </div>
+
+    <!-- Add-ons -->
     <div class="card" style="margin-top:25px;">
         <h3>Add‑ons</h3>
 
-        <label>
-            <input type="checkbox" value="40" onclick="updateTotal()">
-            Headlight Restoration — $40
-        </label>
-
-        <label>
-            <input type="checkbox" value="30" onclick="updateTotal()">
-            Engine Bay Cleaning — $30
-        </label>
-
-        <label>
-            <input type="checkbox" value="50" onclick="updateTotal()">
-            Polishing — $50
-        </label>
+        <label><input type="checkbox" value="10" onclick="updateTotal()">Tire Shine — $10</label>
+        <label><input type="checkbox" value="15" onclick="updateTotal()">Garbage Removal — $15</label>
+        <label><input type="checkbox" value="40" onclick="updateTotal()">Seat Removal — $40</label>
+        <label><input type="checkbox" value="40" onclick="updateTotal()">Headlight Restoration — $40</label>
+        <label><input type="checkbox" value="30" onclick="updateTotal()">Engine Bay Cleaning — $30</label>
+        <label><input type="checkbox" value="50" onclick="updateTotal()">Polishing — $50</label>
     </div>
 
+    <!-- Total -->
     <div class="card" style="margin-top:25px;">
         <h3>Total Estimated Price</h3>
         <p id="totalPrice" class="price">$0</p>
-
-        <p id="fullDetailNote" style="display:none; color:#b5b5b5; margin-top:10px; font-size:15px;">
-            * Full Detail includes all add‑ons at no extra charge.
-        </p>
 
         <p id="summaryBox" style="margin-top:10px; color:#dcdcdc; font-size:16px;"></p>
     </div>
@@ -293,59 +285,80 @@ footer a {
 <script>
 function updateTotal() {
     let base = document.querySelector('input[name="base"]:checked');
+    let size = document.querySelector('input[name="size"]:checked');
+    let dirt = document.querySelector('input[name="dirt"]:checked');
     let addons = document.querySelectorAll('input[type="checkbox"]');
     let checkedAddons = document.querySelectorAll('input[type="checkbox"]:checked');
 
-    let total = 0;
-    let summaryText = "";
+    if (!base || !size || !dirt) {
+        document.getElementById("totalPrice").innerText = "$0";
+        document.getElementById("summaryBox").innerText = "";
+        return;
+    }
 
-    let fullDetailSelected = base && base.value === "325";
+    let basePrices = {
+        exterior: { small: 80, medium: 100, large: 130 },
+        interior: { small: 165, medium: 200, large: 250 },
+        full:     { small: 300, medium: 350, large: 425 },
+        refresh:  { small: 500, medium: 550, large: 600 }
+    };
 
-    if (fullDetailSelected) {
-        total = 325;
+    let total = basePrices[base.value][size.value];
 
-        document.getElementById("fullDetailNote").style.display = "block";
+    // Dirtiness surcharge
+    let dirtPercent = 0;
 
+    if (dirt.value === "medium") {
+        dirtPercent = size.value === "small" ? 0.05 :
+                      size.value === "medium" ? 0.07 : 0.10;
+    }
+    if (dirt.value === "high") {
+        dirtPercent = size.value === "small" ? 0.10 :
+                      size.value === "medium" ? 0.12 : 0.15;
+    }
+    if (dirt.value === "uncleanable") {
+        dirtPercent = 0.20;
+    }
+
+    // Add-ons (unless Refresh)
+    if (base.value !== "refresh") {
+        checkedAddons.forEach(a => {
+            total += parseInt(a.value);
+        });
+    }
+
+    // Apply dirtiness surcharge
+    total += total * dirtPercent;
+
+    // Refresh disables add-ons
+    if (base.value === "refresh") {
         addons.forEach(box => {
             box.checked = false;
             box.disabled = true;
             box.parentElement.classList.add("addon-disabled");
         });
-
-        summaryText = "You selected: Full Detail (includes all add‑ons)";
-
     } else {
-        document.getElementById("fullDetailNote").style.display = "none";
-
         addons.forEach(box => {
             box.disabled = false;
             box.parentElement.classList.remove("addon-disabled");
         });
-
-        if (base) {
-            total += parseInt(base.value);
-        }
-
-        checkedAddons.forEach(a => {
-            total += parseInt(a.value);
-        });
-
-        if (base) {
-            let baseName = base.parentElement.innerText.split("—")[0].trim();
-            summaryText = "You selected: " + baseName;
-
-            if (checkedAddons.length > 0) {
-                let addonNames = [];
-                checkedAddons.forEach(a => {
-                    addonNames.push(a.parentElement.innerText.split("—")[0].trim());
-                });
-                summaryText += " + " + addonNames.join(", ");
-            }
-        }
     }
 
-    document.getElementById("totalPrice").innerText = "$" + total;
-    document.getElementById("summaryBox").innerText = summaryText;
+    // Summary
+    let summary = "You selected: " + base.value.charAt(0).toUpperCase() + base.value.slice(1)
+                + " — " + size.value.charAt(0).toUpperCase() + size.value.slice(1)
+                + " — Dirtiness: " + dirt.value.charAt(0).toUpperCase() + dirt.value.slice(1);
+
+    if (base.value !== "refresh" && checkedAddons.length > 0) {
+        let addonNames = [];
+        checkedAddons.forEach(a => {
+            addonNames.push(a.parentElement.innerText.split("—")[0].trim());
+        });
+        summary += " + " + addonNames.join(", ");
+    }
+
+    document.getElementById("totalPrice").innerText = "$" + Math.round(total);
+    document.getElementById("summaryBox").innerText = summary;
 }
 </script>
 

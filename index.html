@@ -13,8 +13,8 @@ body {
     font-family: "Inter", sans-serif;
     margin: 0;
     padding: 0;
-    background: #0b0b0b; /* Deep matte black */
-    color: #dcdcdc; /* Soft grey */
+    background: #0b0b0b;
+    color: #dcdcdc;
     line-height: 1.7;
 }
 
@@ -127,6 +127,19 @@ h2 {
     background: #222;
     border-color: #3a3a3a;
 }
+
+/* ===== FORM ELEMENTS ===== */
+label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
+}
 </style>
 </head>
 
@@ -150,7 +163,7 @@ h2 {
 
         <div class="card">
             <h3>Interior Detail</h3>
-            <p>Deep vacuum, shampoo, steam clean, plastics, vents, windows, odor removal.</p>
+            <p>Deep vacuum, shampoo, plastics, vents, windows, odor removal.</p>
         </div>
 
         <div class="card">
@@ -190,6 +203,54 @@ h2 {
     </div>
 </section>
 
+<!-- ===== CONFIGURATION SECTION ===== -->
+<section>
+    <h2>Build Your Detail Package</h2>
+
+    <div class="card">
+        <h3>Select Base Service</h3>
+
+        <label>
+            <input type="radio" name="base" value="80" onclick="updateTotal()">
+            Exterior Detail — $80+
+        </label>
+
+        <label>
+            <input type="radio" name="base" value="165" onclick="updateTotal()">
+            Interior Detail — $165+
+        </label>
+
+        <label>
+            <input type="radio" name="base" value="325" onclick="updateTotal()">
+            Full Detail — $325+
+        </label>
+    </div>
+
+    <div class="card" style="margin-top:25px;">
+        <h3>Add‑ons</h3>
+
+        <label>
+            <input type="checkbox" value="40" onclick="updateTotal()">
+            Headlight Restoration — $40
+        </label>
+
+        <label>
+            <input type="checkbox" value="30" onclick="updateTotal()">
+            Engine Bay Cleaning — $30
+        </label>
+
+        <label>
+            <input type="checkbox" value="50" onclick="updateTotal()">
+            Polishing — $50
+        </label>
+    </div>
+
+    <div class="card" style="margin-top:25px;">
+        <h3>Total Estimated Price</h3>
+        <p id="totalPrice" class="price">$0</p>
+    </div>
+</section>
+
 <!-- ===== ABOUT ===== -->
 <section>
     <h2>About</h2>
@@ -207,6 +268,26 @@ h2 {
     <p>Phone: (204)-509-9595</p>
     <p>Location: Winnipeg, Manitoba</p>
 </div>
+
+<!-- ===== PRICE CALCULATOR SCRIPT ===== -->
+<script>
+function updateTotal() {
+    let base = document.querySelector('input[name="base"]:checked');
+    let addons = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    let total = 0;
+
+    if (base) {
+        total += parseInt(base.value);
+    }
+
+    addons.forEach(a => {
+        total += parseInt(a.value);
+    });
+
+    document.getElementById("totalPrice").innerText = "$" + total;
+}
+</script>
 
 </body>
 </html>

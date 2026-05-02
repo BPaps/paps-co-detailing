@@ -108,26 +108,6 @@ h2 {
     color: #c2c2c2;
 }
 
-/* ===== BUTTON ===== */
-.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 28px;
-    background: #1a1a1a;
-    color: #e5e5e5;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 18px;
-    font-family: "Cinzel", serif;
-    border: 1px solid #2a2a2a;
-    transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn:hover {
-    background: #222;
-    border-color: #3a3a3a;
-}
-
 /* ===== FORM ELEMENTS ===== */
 label {
     display: block;
@@ -140,10 +120,37 @@ input[type="radio"],
 input[type="checkbox"] {
     margin-right: 10px;
 }
+
+/* Grey-out disabled add-ons */
+.addon-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align:center;
+    padding:40px 20px;
+    border-top:1px solid #1a1a1a;
+    margin-top:60px;
+    color:#b5b5b5;
+    font-family:'Cinzel', serif;
+    font-size:16px;
+}
+footer a {
+    display:block;
+    margin-bottom:20px;
+    color:#b5b5b5;
+    text-decoration:none;
+    font-size:15px;
+    letter-spacing:1px;
+}
 </style>
 </head>
 
 <body>
+
+<a id="top"></a>
 
 <header>
     <h1>Paps & Co Car Detailing</h1>
@@ -248,6 +255,12 @@ input[type="checkbox"] {
     <div class="card" style="margin-top:25px;">
         <h3>Total Estimated Price</h3>
         <p id="totalPrice" class="price">$0</p>
+
+        <p id="fullDetailNote" style="display:none; color:#b5b5b5; margin-top:10px; font-size:15px;">
+            * Full Detail includes all add‑ons at no extra charge.
+        </p>
+
+        <p id="summaryBox" style="margin-top:10px; color:#dcdcdc; font-size:16px;"></p>
     </div>
 </section>
 
@@ -269,23 +282,70 @@ input[type="checkbox"] {
     <p>Location: Winnipeg, Manitoba</p>
 </div>
 
+<!-- ===== FOOTER ===== -->
+<footer>
+    <a href="#top">Back to top ↑</a>
+    <p>Paps & Co Car Detailing — Winnipeg, Manitoba</p>
+    <p>Established 2023</p>
+</footer>
+
 <!-- ===== PRICE CALCULATOR SCRIPT ===== -->
 <script>
 function updateTotal() {
     let base = document.querySelector('input[name="base"]:checked');
-    let addons = document.querySelectorAll('input[type="checkbox"]:checked');
+    let addons = document.querySelectorAll('input[type="checkbox"]');
+    let checkedAddons = document.querySelectorAll('input[type="checkbox"]:checked');
 
     let total = 0;
+    let summaryText = "";
 
-    if (base) {
-        total += parseInt(base.value);
+    let fullDetailSelected = base && base.value === "325";
+
+    if (fullDetailSelected) {
+        total = 325;
+
+        document.getElementById("fullDetailNote").style.display = "block";
+
+        addons.forEach(box => {
+            box.checked = false;
+            box.disabled = true;
+            box.parentElement.classList.add("addon-disabled");
+        });
+
+        summaryText = "You selected: Full Detail (includes all add‑ons)";
+
+    } else {
+        document.getElementById("fullDetailNote").style.display = "none";
+
+        addons.forEach(box => {
+            box.disabled = false;
+            box.parentElement.classList.remove("addon-disabled");
+        });
+
+        if (base) {
+            total += parseInt(base.value);
+        }
+
+        checkedAddons.forEach(a => {
+            total += parseInt(a.value);
+        });
+
+        if (base) {
+            let baseName = base.parentElement.innerText.split("—")[0].trim();
+            summaryText = "You selected: " + baseName;
+
+            if (checkedAddons.length > 0) {
+                let addonNames = [];
+                checkedAddons.forEach(a => {
+                    addonNames.push(a.parentElement.innerText.split("—")[0].trim());
+                });
+                summaryText += " + " + addonNames.join(", ");
+            }
+        }
     }
 
-    addons.forEach(a => {
-        total += parseInt(a.value);
-    });
-
     document.getElementById("totalPrice").innerText = "$" + total;
+    document.getElementById("summaryBox").innerText = summaryText;
 }
 </script>
 

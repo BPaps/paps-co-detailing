@@ -88,13 +88,6 @@ h2 {
     padding-bottom: 6px;
 }
 
-.price {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 12px;
-    color: #e5e5e5;
-}
-
 /* ===== FORM ELEMENTS ===== */
 label {
     display: block;
@@ -114,17 +107,24 @@ input[type="checkbox"] {
     pointer-events: none;
 }
 
-/* ===== CONTACT SECTION ===== */
+/* ===== CONTACT SECTION (FIXED CENTERING) ===== */
 .contact {
+    width: 100%;
+    max-width: 700px;
     text-align: center;
-    margin: 80px 0;
+    margin: 80px auto;
     padding: 40px 20px;
     border-top: 1px solid #1a1a1a;
+    display: block;
 }
 
+.contact h2,
 .contact p {
-    font-size: 18px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     color: #c2c2c2;
+    font-size: 18px;
 }
 
 /* ===== FOOTER ===== */
@@ -186,36 +186,7 @@ footer a {
     </div>
 </section>
 
-<!-- ===== PRICING ===== -->
-<section>
-    <h2>Pricing</h2>
-
-    <div class="section-grid">
-
-        <div class="card">
-            <h3>Exterior Detail</h3>
-            <p class="price">$80 – $130</p>
-        </div>
-
-        <div class="card">
-            <h3>Interior Detail</h3>
-            <p class="price">$165 – $250</p>
-        </div>
-
-        <div class="card">
-            <h3>Full Detail</h3>
-            <p class="price">$300 – $425</p>
-        </div>
-
-        <div class="card">
-            <h3>Refresh Package</h3>
-            <p class="price">$500 – $600</p>
-        </div>
-
-    </div>
-</section>
-
-<!-- ===== CONFIGURATION SECTION ===== -->
+<!-- ===== BUILD YOUR PACKAGE ===== -->
 <section>
     <h2>Build Your Detail Package</h2>
 
@@ -279,7 +250,7 @@ footer a {
     </p>
 </section>
 
-<!-- ===== CONTACT ===== -->
+<!-- ===== CONTACT (FIXED CENTERING) ===== -->
 <section class="contact" id="contact">
     <h2>Contact</h2>
     <p>Email: benpapineauwpg@gmail.com</p>
@@ -358,9 +329,10 @@ function updateTotal() {
     }
 
     // Summary
-    let summary = "You selected: " + base.value.charAt(0).toUpperCase() + base.value.slice(1)
-                + " — " + size.value.charAt(0).toUpperCase() + size.value.slice(1)
-                + " — Dirtiness: " + dirt.value.charAt(0).toUpperCase() + dirt.value.slice(1);
+    let summary = "You selected: " 
+        + base.value.charAt(0).toUpperCase() + base.value.slice(1)
+        + " — " + size.value.charAt(0).toUpperCase() + size.value.slice(1)
+        + " — Dirtiness: " + dirt.value.charAt(0).toUpperCase() + dirt.value.slice(1);
 
     if (base.value !== "refresh" && checkedAddons.length > 0) {
         let addonNames = [];

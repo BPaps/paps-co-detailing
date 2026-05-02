@@ -107,7 +107,7 @@ input[type="checkbox"] {
     pointer-events: none;
 }
 
-/* ===== CONTACT SECTION (FIXED CENTERING) ===== */
+/* ===== CONTACT SECTION (CENTERED) ===== */
 .contact {
     width: 100%;
     max-width: 700px;
@@ -213,10 +213,14 @@ footer a {
     <div class="card" style="margin-top:25px;">
         <h3>Dirtiness Level</h3>
 
-        <label><input type="radio" name="dirt" value="low" onclick="updateTotal()">Low (0%)</label>
-        <label><input type="radio" name="dirt" value="medium" onclick="updateTotal()">Medium (5–10%)</label>
-        <label><input type="radio" name="dirt" value="high" onclick="updateTotal()">High (10–15%)</label>
-        <label><input type="radio" name="dirt" value="uncleanable" onclick="updateTotal()">Uncleanable (20%)</label>
+        <label><input type="radio" name="dirt" value="low" onclick="updateTotal()">Low</label>
+        <label><input type="radio" name="dirt" value="medium" onclick="updateTotal()">Medium</label>
+        <label><input type="radio" name="dirt" value="high" onclick="updateTotal()">High</label>
+        <label><input type="radio" name="dirt" value="uncleanable" onclick="updateTotal()">Uncleanable</label>
+
+        <p style="margin-top:15px; font-size:14px; color:#b5b5b5;">
+            *Extra dirtiness adds between <strong>5%</strong> and <strong>20%</strong> to the total cost depending on severity.
+        </p>
     </div>
 
     <!-- Add-ons -->
@@ -250,7 +254,7 @@ footer a {
     </p>
 </section>
 
-<!-- ===== CONTACT (FIXED CENTERING) ===== -->
+<!-- ===== CONTACT ===== -->
 <section class="contact" id="contact">
     <h2>Contact</h2>
     <p>Email: benpapineauwpg@gmail.com</p>

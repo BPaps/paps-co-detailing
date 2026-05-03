@@ -18,6 +18,35 @@ body {
     line-height: 1.7;
 }
 
+/* ===== SIDE BANNERS ===== */
+.side-banner {
+    position: fixed;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.left-banner {
+    left: 0;
+    background-image: url('/attachments/9e5k3JAitigxLUyDN27Lv.png');
+}
+
+.right-banner {
+    right: 0;
+    background-image: url('/attachments/cLPkgjfB1gd3Ki5yfctQe.png');
+}
+
+@media (max-width: 900px) {
+    .side-banner {
+        display: none;
+    }
+}
+
 /* ===== HEADER ===== */
 header {
     text-align: center;
@@ -55,6 +84,7 @@ h2 {
     color: #e5e5e5;
     border-bottom: 1px solid #1a1a1a;
     padding-bottom: 8px;
+    box-shadow: 0 2px 0 #66023C22;
 }
 
 /* ===== CARDS ===== */
@@ -83,9 +113,8 @@ h2 {
     color: #e5e5e5;
 }
 
-.service-header span {
-    font-size: 18px;
-    color: #b5b5b5;
+.service-header:hover span:first-child {
+    color: #66023C;
 }
 
 .service-body {
@@ -99,13 +128,6 @@ h2 {
     display: block;
 }
 
-/* ===== DIVIDERS ===== */
-.divider {
-    border: 0;
-    border-top: 1px solid #1f1f1f;
-    margin: 20px 0;
-}
-
 /* ===== ADD‑ON DROPDOWNS ===== */
 .addon-item {
     margin-bottom: 10px;
@@ -117,7 +139,7 @@ h2 {
     font-size: 14px;
     color: #cfcfcf;
     padding-left: 5px;
-    border-left: 2px solid #1f1f1f;
+    border-left: 2px solid #66023C33;
     animation: fadeIn 0.25s ease;
 }
 
@@ -134,9 +156,18 @@ label {
     font-size: 16px;
 }
 
+label:hover {
+    color: #66023C;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
     margin-right: 10px;
+}
+
+input[type="checkbox"]:focus,
+input[type="radio"]:focus {
+    outline: 2px solid #66023C;
 }
 
 .addon-disabled {
@@ -154,7 +185,7 @@ input[type="checkbox"] {
 }
 
 .info-icon:hover {
-    color: #ffffff;
+    color: #66023C;
 }
 
 /* ===== POPUPS ===== */
@@ -181,7 +212,7 @@ input[type="checkbox"] {
     padding: 25px 30px;
     max-width: 520px;
     width: 90%;
-    border: 1px solid #2a2a2a;
+    border: 1px solid #66023C33;
     box-shadow: 0 0 25px rgba(0,0,0,0.8);
 }
 
@@ -245,7 +276,8 @@ footer a {
 
 <body>
 
-<a id="top"></a>
+<div class="side-banner left-banner"></div>
+<div class="side-banner right-banner"></div>
 
 <header>
     <h1>Paps & Co Car Detailing</h1>
@@ -381,7 +413,7 @@ footer a {
         <!-- Engine Bay Cleaning -->
         <div class="addon-item">
             <label onclick="toggleAddonDesc('addon-engine')">
-                <input type="checkbox" value="30" onclick="updateTotal(event)">
+                <input type="checkbox" id="engineBay" value="30" onclick="updateTotal(event)">
                 Engine Bay Cleaning — $30
             </label>
             <div id="addon-engine" class="addon-desc">
@@ -412,7 +444,38 @@ footer a {
         <p id="totalPrice" class="price" style="font-size:22px; margin:5px 0 10px 0;">$0</p>
         <p id="summaryBox" style="margin-top:5px; color:#dcdcdc; font-size:16px;"></p>
 
-        <button class="book-btn" onclick="openBooking()">Book Now</button>
+        <button class="book-btn" onclick="openBooking()" style="margin-top:10px; padding:10px 20px; border-radius:6px; border:none; background:#222; color:#f5f5f5; cursor:pointer;">
+            Book Now
+        </button>
+    </div>
+</section>
+
+<!-- ===== ABOUT & STORY SECTION ===== -->
+<section>
+    <h2>About & Story</h2>
+
+    <div style="display:flex; gap:25px; flex-wrap:wrap;">
+
+        <!-- ABOUT CARD -->
+        <div class="card" style="flex:1; min-width:280px;">
+            <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; color:#e5e5e5;">
+                About
+            </h3>
+            <p style="color:#cfcfcf; font-size:15px; line-height:1.7;">
+                Paps & Co Car Detailing is built on a simple idea — premium service should feel personal, honest, and carefully done. Every vehicle is treated with the same level of attention and respect, whether it’s a daily driver or something special. The goal is to deliver a clean that feels refreshing, balanced, and genuinely satisfying.
+            </p>
+        </div>
+
+        <!-- STORY CARD -->
+        <div class="card" style="flex:1; min-width:280px;">
+            <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; color:#e5e5e5;">
+                Story
+            </h3>
+            <p style="color:#cfcfcf; font-size:15px; line-height:1.7;">
+                My name is Ben Papineau. I’m 20 years old, and I’ve always had a passion for cars — the look, the feel, the experience of taking care of them. I started Paps & Co because I’ve always appreciated the feeling of good premium service, the kind where you can tell someone genuinely cares about the work they’re doing. That’s the standard I bring to every detail: premium treatment, real effort, and results that feel worth it.
+            </p>
+        </div>
+
     </div>
 </section>
 
@@ -448,7 +511,9 @@ footer a {
         <label>Additional Comments</label>
         <textarea id="bookComments" rows="4" placeholder="Anything else we should know?"></textarea>
 
-        <button class="booking-submit" onclick="submitBooking()">Submit Request</button>
+        <button class="booking-submit" onclick="submitBooking()" style="margin-top:15px; padding:10px 20px; border-radius:6px; border:none; background:#222; color:#f5f5f5; cursor:pointer;">
+            Submit Request
+        </button>
 
         <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">Close</button>
     </div>
@@ -517,15 +582,11 @@ function hideAllAddonDescs() {
 }
 
 function updateTotal(e) {
-    // Prevent label click from double-triggering checkbox change logic
-    if (e && e.target && e.target.type === "checkbox") {
-        // allow normal behavior
-    }
-
     const base = document.querySelector('input[name="base"]:checked');
     const size = document.querySelector('input[name="size"]:checked');
     const addonBoxes = document.querySelectorAll('input[type="checkbox"]');
     const tireShine = document.getElementById("tireShine");
+    const engineBay = document.getElementById("engineBay");
 
     if (!base || !size) {
         document.getElementById("totalPrice").innerText = "$0";
@@ -560,11 +621,31 @@ function updateTotal(e) {
 
         // Exterior: tire shine included by default, so disable that add-on + hide its description
         if (base.value === "exterior") {
-            tireShine.checked = false;
-            tireShine.disabled = true;
-            tireShine.parentElement.classList.add("addon-disabled");
-            const tireDesc = document.getElementById("addon-tire");
-            if (tireDesc) tireDesc.style.display = "none";
+            if (tireShine) {
+                tireShine.checked = false;
+                tireShine.disabled = true;
+                tireShine.parentElement.classList.add("addon-disabled");
+                const tireDesc = document.getElementById("addon-tire");
+                if (tireDesc) tireDesc.style.display = "none";
+            }
+        }
+
+        // Full Detail: disable Tire Shine + Engine Bay Cleaning
+        if (base.value === "full") {
+            if (tireShine) {
+                tireShine.checked = false;
+                tireShine.disabled = true;
+                tireShine.parentElement.classList.add("addon-disabled");
+                const tireDesc = document.getElementById("addon-tire");
+                if (tireDesc) tireDesc.style.display = "none";
+            }
+            if (engineBay) {
+                engineBay.checked = false;
+                engineBay.disabled = true;
+                engineBay.parentElement.classList.add("addon-disabled");
+                const engineDesc = document.getElementById("addon-engine");
+                if (engineDesc) engineDesc.style.display = "none";
+            }
         }
 
         // Add selected add-ons to total

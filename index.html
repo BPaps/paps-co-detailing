@@ -67,41 +67,49 @@ h2 {
     margin-bottom: 25px;
 }
 
-.card h3 {
-    margin-top: 0;
-    font-size: 22px;
-    font-family: "Cinzel", serif;
-    color: #dcdcdc;
+/* ===== SERVICE DROPDOWNS ===== */
+.service-item {
     border-bottom: 1px solid #1a1a1a;
-    padding-bottom: 6px;
+    padding: 12px 0;
 }
 
-/* ===== DROPDOWN ===== */
-.dropdown-header {
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
-    padding: 20px;
-    background: #111111;
-    border: 1px solid #1a1a1a;
-    border-radius: 10px;
     font-family: "Cinzel", serif;
-    font-size: 22px;
+    font-size: 20px;
     color: #e5e5e5;
-    user-select: none;
 }
 
-.dropdown-content {
+.service-header span {
+    font-size: 18px;
+    color: #b5b5b5;
+}
+
+.service-body {
     display: none;
-    margin-top: 15px;
+    margin-top: 8px;
+    font-size: 15px;
+    color: #cfcfcf;
 }
 
-.dropdown-content.dropdown-open {
+.service-body.open {
     display: block;
+}
+
+/* ===== BUILD YOUR PACKAGE (ONE BOX) ===== */
+.divider {
+    border: 0;
+    border-top: 1px solid #1f1f1f;
+    margin: 20px 0;
 }
 
 /* ===== FORM ELEMENTS ===== */
 label {
     display: block;
-    margin: 10px 0;
+    margin: 8px 0;
     cursor: pointer;
     font-size: 16px;
 }
@@ -182,6 +190,82 @@ input[type="checkbox"] {
     font-weight: 500;
 }
 
+/* ===== BOOKING BUTTON & POPUP ===== */
+.book-btn {
+    margin-top: 15px;
+    background: #e5e5e5;
+    color: #111;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.book-btn:hover {
+    background: #ffffff;
+}
+
+.booking-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.booking-popup.visible {
+    display: flex;
+}
+
+.booking-content {
+    background: #141414;
+    border-radius: 12px;
+    padding: 25px 30px;
+    max-width: 520px;
+    width: 90%;
+    border: 1px solid #2a2a2a;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+}
+
+.booking-content h3 {
+    margin-top: 0;
+    font-family: "Cinzel", serif;
+    color: #f0f0f0;
+}
+
+.booking-content input,
+.booking-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background: #1b1b1b;
+    color: #e5e5e5;
+}
+
+.booking-submit {
+    background: #e5e5e5;
+    color: #111;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+}
+
+.booking-submit:hover {
+    background: #ffffff;
+}
+
 /* ===== CONTACT ===== */
 .contact {
     width: 100%;
@@ -231,84 +315,103 @@ footer a {
     <p>Detailing Done Right.</p>
 </header>
 
-<!-- ===== SERVICES (MERGED INTO ONE BOX) ===== -->
+<!-- ===== SERVICES (ONE BOX WITH DROPDOWNS) ===== -->
 <section>
     <h2>Services</h2>
 
     <div class="card">
-        <h3>Our Services</h3>
-        <p><strong>Exterior Detail:</strong> Hand wash, clay bar, wax, tire shine, trim restoration.</p>
-        <p><strong>Interior Detail:</strong> Deep vacuum, shampoo, plastics, vents, windows, odor removal.</p>
-        <p><strong>Full Detail:</strong> Complete interior + exterior package.</p>
-        <p><strong>Refresh Package:</strong> Full restoration — returns your car to like‑new condition.</p>
+        <div class="service-item">
+            <div class="service-header" onclick="toggleService('ext')">
+                <span>Exterior Detail</span>
+                <span>▼</span>
+            </div>
+            <div id="service-ext" class="service-body">
+                An exterior detail begins with a careful hand wash using pH‑neutral soap to safely lift dirt without affecting the paint, followed by a clay bar treatment that removes embedded contaminants and leaves the surface smooth. Once the paint is fully decontaminated, a protective hand‑applied wax enhances gloss and adds a durable layer of protection. Trim and tires are restored to a rich, clean finish, the exterior glass is polished for clarity, and the vehicle receives a final inspection under proper lighting to ensure a sharp, consistent appearance.
+            </div>
+        </div>
+
+        <div class="service-item">
+            <div class="service-header" onclick="toggleService('int')">
+                <span>Interior Detail</span>
+                <span>▼</span>
+            </div>
+            <div id="service-int" class="service-body">
+                An interior detail starts with a deep vacuum of the seats, carpets, mats, and trunk area, ensuring debris is removed from all visible and hidden spaces. Carpets and upholstery are shampooed and extracted to lift stains and refresh the fabric, while all plastic, vinyl, and leather surfaces are thoroughly cleaned and conditioned to restore their natural look. Vents, crevices, and tight areas are brushed and air‑blown to eliminate dust buildup, windows are polished to a streak‑free finish, and an odor neutralizer is applied to leave the cabin clean and refreshed.
+            </div>
+        </div>
+
+        <div class="service-item">
+            <div class="service-header" onclick="toggleService('full')">
+                <span>Full Detail</span>
+                <span>▼</span>
+            </div>
+            <div id="service-full" class="service-body">
+                A full detail combines the complete interior and exterior processes into one comprehensive service, restoring the vehicle both inside and out. The exterior receives a hand wash, clay bar treatment, wax protection, and trim revival, while the interior is renewed through deep vacuuming, shampoo extraction, surface cleaning, conditioning, and glass polishing. The result is a vehicle that looks and feels refreshed throughout.
+            </div>
+        </div>
+
+        <div class="service-item" style="border-bottom:none;">
+            <div class="service-header" onclick="toggleService('refresh')">
+                <span>Refresh Package</span>
+                <span>▼</span>
+            </div>
+            <div id="service-refresh" class="service-body">
+                The refresh package is the most extensive service offered, designed to bring a vehicle as close to like‑new condition as possible. The interior undergoes a full restoration that includes deep extraction, stain removal, detailed cleaning of every surface, and conditioning treatments, while the exterior receives complete decontamination, wax protection, trim enhancement, and a meticulous final inspection. This package is ideal for vehicles that need a full reset or haven’t been detailed in a long time.
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- ===== BUILD YOUR PACKAGE (DROPDOWN) ===== -->
+<!-- ===== BUILD YOUR DETAIL PACKAGE (ONE BOX) ===== -->
 <section>
-    <div class="dropdown-header" onclick="toggleDropdown()">
-        Build Your Detail Package ▼
-    </div>
+    <h2>Build Your Detail Package</h2>
 
-    <div id="dropdown" class="dropdown-content">
+    <div class="card">
 
         <!-- Base Service -->
-        <div class="card">
-            <h3>Select Base Service</h3>
+        <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; border-bottom:1px solid #1a1a1a; padding-bottom:6px;">
+            Package Builder
+        </h3>
 
-            <label><input type="radio" name="base" value="exterior" onclick="autoOpen(); updateTotal()">Exterior Detail</label>
-            <label><input type="radio" name="base" value="interior" onclick="autoOpen(); updateTotal()">Interior Detail</label>
-            <label><input type="radio" name="base" value="full" onclick="autoOpen(); updateTotal()">Full Detail</label>
-            <label><input type="radio" name="base" value="refresh" onclick="autoOpen(); updateTotal()">Refresh Package</label>
-        </div>
+        <p style="font-size:15px; color:#bfbfbf; margin-top:10px;">
+            Choose your base service, vehicle size, and any add‑ons to get an estimated price.
+        </p>
 
-        <!-- Vehicle Size -->
-        <div class="card">
-            <h3>Vehicle Size</h3>
+        <hr class="divider">
 
-            <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
-            <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
-            <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
-        </div>
+        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Base Service</h4>
+        <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
+        <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
+        <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
+        <label><input type="radio" name="base" value="refresh" onclick="updateTotal()">Refresh Package</label>
 
-        <!-- Dirtiness Level -->
-        <div class="card">
-            <h3>Dirtiness Level</h3>
+        <hr class="divider">
 
-            <label><input type="radio" name="dirt" value="low" onclick="updateTotal()">Low</label>
-            <label><input type="radio" name="dirt" value="medium" onclick="updateTotal()">Medium</label>
-            <label><input type="radio" name="dirt" value="high" onclick="updateTotal()">High</label>
-            <label><input type="radio" name="dirt" value="uncleanable" onclick="updateTotal()">Uncleanable</label>
+        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Vehicle Size</h4>
+        <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
+        <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
+        <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
 
-            <p style="margin-top:15px; font-size:14px; color:#b5b5b5;">
-                *Dirtiness fees apply <strong>only to interior work</strong> and range from <strong>5%</strong> to <strong>20%</strong> depending on severity.  
-                Low dirtiness adds <strong>0%</strong>.
-            </p>
-        </div>
+        <hr class="divider">
 
-        <!-- Add-ons -->
-        <div class="card">
-            <h3>Add‑ons</h3>
+        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Add‑ons</h4>
+        <label><input type="checkbox" value="10" onclick="updateTotal()">Tire Shine — $10</label>
+        <label><input type="checkbox" value="15" onclick="updateTotal()">Garbage Removal — $15</label>
+        <label><input type="checkbox" value="40" onclick="updateTotal()">Seat Removal — $40</label>
+        <label><input type="checkbox" value="40" onclick="updateTotal()">Headlight Restoration — $40</label>
+        <label><input type="checkbox" value="30" onclick="updateTotal()">Engine Bay Cleaning — $30</label>
+        <label><input type="checkbox" value="50" onclick="updateTotal()">Polishing — $50</label>
 
-            <label><input type="checkbox" value="10" onclick="updateTotal()">Tire Shine — $10</label>
-            <label><input type="checkbox" value="15" onclick="updateTotal()">Garbage Removal — $15</label>
-            <label><input type="checkbox" value="40" onclick="updateTotal()">Seat Removal — $40</label>
-            <label><input type="checkbox" value="40" onclick="updateTotal()">Headlight Restoration — $40</label>
-            <label><input type="checkbox" value="30" onclick="updateTotal()">Engine Bay Cleaning — $30</label>
-            <label><input type="checkbox" value="50" onclick="updateTotal()">Polishing — $50</label>
-        </div>
+        <hr class="divider">
 
-        <!-- Total -->
-        <div class="card">
-            <h3>
-                Total Estimated Price
-                <span class="info-icon" onclick="toggleInfo()">ⓘ</span>
-            </h3>
-            <p id="totalPrice" class="price">$0</p>
+        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">
+            Total Estimated Price
+            <span class="info-icon" onclick="toggleInfo()">ⓘ</span>
+        </h4>
+        <p id="totalPrice" class="price" style="font-size:22px; margin:5px 0 10px 0;">$0</p>
+        <p id="summaryBox" style="margin-top:5px; color:#dcdcdc; font-size:16px;"></p>
 
-            <p id="summaryBox" style="margin-top:10px; color:#dcdcdc; font-size:16px;"></p>
-        </div>
-
+        <button class="book-btn" onclick="openBooking()">Book Now</button>
     </div>
 </section>
 
@@ -317,23 +420,36 @@ footer a {
     <div class="info-content">
         <h4>How your price is calculated</h4>
         <ul>
-            <li><strong>1. Base price:</strong> Depends on service (Exterior, Interior, Full, Refresh) and vehicle size (Small/Medium/Large).</li>
-            <li><strong>2. Interior portion:</strong>  
-                Interior Detail = 100% interior.  
-                Full Detail = 60% interior / 40% exterior.  
-                Refresh = 70% interior / 30% exterior.
-            </li>
-            <li><strong>3. Dirtiness fee (interior only):</strong>  
-                Low = 0%.  
-                Medium / High = 5–15% based on vehicle size.  
-                Uncleanable = 20%.
-            </li>
-            <li><strong>4. Add‑ons:</strong> Any selected add‑ons are added on top of the base price.</li>
-            <li><strong>5. Final total:</strong>  
-                Final price = Base price + Add‑ons + (Interior portion × dirtiness %).
-            </li>
+            <li><strong>1. Base price:</strong> Depends on the selected service (Exterior, Interior, Full, Refresh) and vehicle size (Small, Medium, Large).</li>
+            <li><strong>2. Add‑ons:</strong> Any selected add‑ons are added on top of the base price.</li>
+            <li><strong>3. Final total:</strong> Final price = Base price + Add‑ons.</li>
         </ul>
         <button class="info-close-btn" onclick="toggleInfo()">Close</button>
+    </div>
+</div>
+
+<!-- BOOKING POPUP -->
+<div id="bookingPopup" class="booking-popup">
+    <div class="booking-content">
+        <h3>Book Your Detail</h3>
+
+        <p id="bookingSummary" style="font-size:15px; color:#cfcfcf; margin-bottom:20px;"></p>
+
+        <label>Your Name</label>
+        <input type="text" id="bookName" placeholder="Enter your name">
+
+        <label>Phone Number</label>
+        <input type="text" id="bookPhone" placeholder="Enter your phone number">
+
+        <label>Email</label>
+        <input type="email" id="bookEmail" placeholder="Enter your email">
+
+        <label>Additional Comments</label>
+        <textarea id="bookComments" rows="4" placeholder="Anything else we should know?"></textarea>
+
+        <button class="booking-submit" onclick="submitBooking()">Submit Request</button>
+
+        <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">Close</button>
     </div>
 </div>
 
@@ -364,14 +480,9 @@ footer a {
 
 <!-- ===== SCRIPT ===== -->
 <script>
-function toggleDropdown() {
-    const dropdown = document.getElementById("dropdown");
-    dropdown.classList.toggle("dropdown-open");
-}
-
-function autoOpen() {
-    const dropdown = document.getElementById("dropdown");
-    dropdown.classList.add("dropdown-open");
+function toggleService(key) {
+    const el = document.getElementById("service-" + key);
+    el.classList.toggle("open");
 }
 
 function toggleInfo() {
@@ -379,14 +490,39 @@ function toggleInfo() {
     popup.classList.toggle("visible");
 }
 
+function openBooking() {
+    const popup = document.getElementById("bookingPopup");
+    popup.classList.toggle("visible");
+
+    const summary = document.getElementById("summaryBox").innerText;
+    const total = document.getElementById("totalPrice").innerText;
+
+    document.getElementById("bookingSummary").innerHTML =
+        "<strong>Your Selection:</strong><br>" + (summary || "No selection yet.") +
+        "<br><br><strong>Total:</strong> " + total;
+}
+
+function submitBooking() {
+    const name = document.getElementById("bookName").value;
+    const phone = document.getElementById("bookPhone").value;
+    const email = document.getElementById("bookEmail").value;
+
+    if (!name || !phone || !email) {
+        alert("Please fill out your name, phone, and email before submitting.");
+        return;
+    }
+
+    alert("Thank you! Your booking request has been submitted. You will be contacted shortly.");
+    openBooking();
+}
+
 function updateTotal() {
     let base = document.querySelector('input[name="base"]:checked');
     let size = document.querySelector('input[name="size"]:checked');
-    let dirt = document.querySelector('input[name="dirt"]:checked');
     let addons = document.querySelectorAll('input[type="checkbox"]');
     let checkedAddons = document.querySelectorAll('input[type="checkbox"]:checked');
 
-    if (!base || !size || !dirt) {
+    if (!base || !size) {
         document.getElementById("totalPrice").innerText = "$0";
         document.getElementById("summaryBox").innerText = "";
         return;
@@ -401,37 +537,12 @@ function updateTotal() {
 
     let total = basePrices[base.value][size.value];
 
-    // Determine interior portion for surcharge
-    let interiorPortion = 0;
-    if (base.value === "interior") interiorPortion = total;
-    if (base.value === "full") interiorPortion = total * 0.60;
-    if (base.value === "refresh") interiorPortion = total * 0.70;
-
-    // Dirtiness surcharge
-    let dirtPercent = 0;
-
-    if (dirt.value === "medium") {
-        dirtPercent = size.value === "small" ? 0.05 :
-                      size.value === "medium" ? 0.07 : 0.10;
-    }
-    if (dirt.value === "high") {
-        dirtPercent = size.value === "small" ? 0.10 :
-                      size.value === "medium" ? 0.12 : 0.15;
-    }
-    if (dirt.value === "uncleanable") {
-        dirtPercent = 0.20;
-    }
-    // Low = 0% by design
-
-    // Add-ons (unless Refresh)
+    // Add-ons (unless Refresh, if you still want that behavior)
     if (base.value !== "refresh") {
         checkedAddons.forEach(a => {
             total += parseInt(a.value);
         });
     }
-
-    // Apply dirtiness surcharge ONLY to interior portion
-    total += interiorPortion * dirtPercent;
 
     // Refresh disables add-ons
     if (base.value === "refresh") {
@@ -447,11 +558,9 @@ function updateTotal() {
         });
     }
 
-    // Summary
-    let summary = "You selected: " 
+    let summary = "Selected: " 
         + base.value.charAt(0).toUpperCase() + base.value.slice(1)
-        + " — " + size.value.charAt(0).toUpperCase() + size.value.slice(1)
-        + " — Dirtiness: " + dirt.value.charAt(0).toUpperCase() + dirt.value.slice(1);
+        + " — " + size.value.charAt(0).toUpperCase() + size.value.slice(1);
 
     if (base.value !== "refresh" && checkedAddons.length > 0) {
         let addonNames = [];

@@ -493,29 +493,33 @@ footer a {
 </div>
 
 <!-- ===== BOOKING POPUP ===== -->
+<!-- ===== BOOKING POPUP ===== -->
 <div id="bookingPopup" class="booking-popup">
     <div class="booking-content">
         <h3>Book Your Detail</h3>
 
-        <p id="bookingSummary" style="font-size:15px; color:#cfcfcf; margin-bottom:20px;"></p>
+        <p style="font-size:16px; color:#cfcfcf; margin-bottom:20px;">
+            Choose how you'd like to book your appointment.
+        </p>
 
-        <label>Your Name</label>
-        <input type="text" id="bookName" placeholder="Enter your name">
+        <a href="mailto:benpapineauwpg@gmail.com" 
+           style="display:block; margin-bottom:12px; padding:10px; background:#222; color:#fff; text-align:center; border-radius:6px; text-decoration:none;">
+           Email
+        </a>
 
-        <label>Phone Number</label>
-        <input type="text" id="bookPhone" placeholder="Enter your phone number">
+        <a href="tel:2045099595" 
+           style="display:block; margin-bottom:12px; padding:10px; background:#222; color:#fff; text-align:center; border-radius:6px; text-decoration:none;">
+           Call
+        </a>
 
-        <label>Email</label>
-        <input type="email" id="bookEmail" placeholder="Enter your email">
+        <a href="sms:2045099595" 
+           style="display:block; margin-bottom:12px; padding:10px; background:#222; color:#fff; text-align:center; border-radius:6px; text-decoration:none;">
+           Text
+        </a>
 
-        <label>Additional Comments</label>
-        <textarea id="bookComments" rows="4" placeholder="Anything else we should know?"></textarea>
-
-        <button class="booking-submit" onclick="submitBooking()" style="margin-top:15px; padding:10px 20px; border-radius:6px; border:none; background:#222; color:#f5f5f5; cursor:pointer;">
-            Submit Request
+        <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">
+            Close
         </button>
-
-        <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">Close</button>
     </div>
 </div>
 
@@ -548,29 +552,7 @@ function toggleInfo() {
 function openBooking() {
     const popup = document.getElementById("bookingPopup");
     popup.classList.toggle("visible");
-
-    const summary = document.getElementById("summaryBox").innerText;
-    const total = document.getElementById("totalPrice").innerText;
-
-    document.getElementById("bookingSummary").innerHTML =
-        "<strong>Your Selection:</strong><br>" + (summary || "No selection yet.") +
-        "<br><br><strong>Total:</strong> " + total;
 }
-
-function submitBooking() {
-    const name = document.getElementById("bookName").value;
-    const phone = document.getElementById("bookPhone").value;
-    const email = document.getElementById("bookEmail").value;
-
-    if (!name || !phone || !email) {
-        alert("Please fill out your name, phone, and email before submitting.");
-        return;
-    }
-
-    alert("Thank you! Your booking request has been submitted. You will be contacted shortly.");
-    openBooking();
-}
-
 function toggleAddonDesc(id) {
     const box = document.getElementById(id);
     box.style.display = box.style.display === "block" ? "none" : "block";

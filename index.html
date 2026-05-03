@@ -373,9 +373,9 @@ footer a {
 
         <!-- Tire Shine -->
         <div class="addon-item">
-            <label onclick="toggleAddonDesc('addon-tire')">
+            <label>
                 <input type="checkbox" id="tireShine" value="10" onclick="updateTotal(event)">
-                Tire Shine — $10
+                <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
             </label>
             <div id="addon-tire" class="addon-desc">
                 Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
@@ -386,9 +386,9 @@ footer a {
 
         <!-- Seat Removal -->
         <div class="addon-item">
-            <label onclick="toggleAddonDesc('addon-seat')">
+            <label>
                 <input type="checkbox" value="40" onclick="updateTotal(event)">
-                Seat Removal — $40
+                <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $40</span>
             </label>
             <div id="addon-seat" class="addon-desc">
                 Seat removal allows for a much deeper interior clean by giving access to areas that normally can’t be reached. With the seats taken out, dirt, debris, and stains hidden underneath can be fully cleaned, leaving the interior noticeably fresher and more complete.
@@ -399,9 +399,9 @@ footer a {
 
         <!-- Headlight Restoration -->
         <div class="addon-item">
-            <label onclick="toggleAddonDesc('addon-headlight')">
+            <label>
                 <input type="checkbox" value="40" onclick="updateTotal(event)">
-                Headlight Restoration — $40
+                <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $40</span>
             </label>
             <div id="addon-headlight" class="addon-desc">
                 Headlight restoration removes the cloudy, yellowed layer that builds up over time and brings back a clear, bright finish. This improves both the look of the vehicle and nighttime visibility.
@@ -412,9 +412,9 @@ footer a {
 
         <!-- Engine Bay Cleaning -->
         <div class="addon-item">
-            <label onclick="toggleAddonDesc('addon-engine')">
+            <label>
                 <input type="checkbox" id="engineBay" value="30" onclick="updateTotal(event)">
-                Engine Bay Cleaning — $30
+                <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $30</span>
             </label>
             <div id="addon-engine" class="addon-desc">
                 Engine bay cleaning removes dust, grease, and buildup from the engine area using safe cleaning methods. The result is a cleaner, more presentable engine compartment that looks well‑maintained.
@@ -425,9 +425,9 @@ footer a {
 
         <!-- Full Body Polishing -->
         <div class="addon-item">
-            <label onclick="toggleAddonDesc('addon-polish')">
+            <label>
                 <input type="checkbox" value="50" onclick="updateTotal(event)">
-                Full Body Polishing — $50
+                <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $50</span>
             </label>
             <div id="addon-polish" class="addon-desc">
                 Full body polishing helps reduce the look of light scratches, swirl marks, and dullness in the paint. It brings back a smoother, glossier finish and makes the vehicle’s exterior look brighter and more refined.
@@ -447,6 +447,7 @@ footer a {
         <button class="book-btn" onclick="openBooking()" style="margin-top:10px; padding:10px 20px; border-radius:6px; border:none; background:#222; color:#f5f5f5; cursor:pointer;">
             Book Now
         </button>
+
     </div>
 </section>
 

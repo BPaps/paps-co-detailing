@@ -106,6 +106,26 @@ h2 {
     margin: 20px 0;
 }
 
+/* ===== ADD‑ON DROPDOWNS ===== */
+.addon-item {
+    margin-bottom: 10px;
+}
+
+.addon-desc {
+    display: none;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #cfcfcf;
+    padding-left: 5px;
+    border-left: 2px solid #1f1f1f;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* ===== FORM ELEMENTS ===== */
 label {
     display: block;
@@ -271,28 +291,16 @@ footer a {
             </div>
         </div>
 
-<!-- Refresh Package -->
-<div class="service-item" style="border-top:1px solid #1a1a1a; border-bottom:none;">
-    <div class="service-header" onclick="toggleService('refresh')">
-        <span>Refresh Package</span>
-        <span>▼</span>
-    </div>
-    <div id="service-refresh" class="service-body">
-        The refresh package is the most in‑depth service available, designed to bring a vehicle as close to like‑new condition as possible. The interior receives a full restoration that includes deep extraction, stain removal, steam cleaning, and detailed attention to every surface, with the seats removed to allow for an even more thorough clean underneath and around hard‑to‑reach areas. The exterior is carefully washed, decontaminated, and polished for a clean, even finish, and the entire vehicle is inspected from top to bottom to ensure a consistent, refreshed look. This package includes every add‑on option by default and often takes the full day to complete due to the level of detail involved.
-    </div>
-</div>
-
-    <!-- ===== ADD‑ON DESCRIPTIONS ===== -->
-    <h2>Add‑On Descriptions</h2>
-    <div class="card">
-
-        <p><strong>Seat Removal:</strong> Seat removal allows for a much deeper interior clean by giving access to areas that normally can’t be reached. With the seats taken out, dirt, debris, and stains hidden underneath can be fully cleaned, leaving the interior noticeably fresher and more complete.</p>
-
-        <p><strong>Headlight Restoration:</strong> Headlight restoration removes the cloudy, yellowed layer that builds up over time and brings back a clear, bright finish. This improves both the look of the vehicle and nighttime visibility, giving the headlights a newer, cleaner appearance.</p>
-
-        <p><strong>Engine Bay Cleaning:</strong> Engine bay cleaning removes dust, grease, and buildup from the engine area using safe cleaning methods. The result is a cleaner, more presentable engine compartment that looks well‑maintained without risking any sensitive components.</p>
-
-        <p><strong>Full Body Polishing:</strong> Full body polishing helps reduce the look of light scratches, swirl marks, and dullness in the paint. It brings back a smoother, glossier finish and makes the vehicle’s exterior look brighter and more refined overall.</p>
+        <!-- Refresh Package -->
+        <div class="service-item" style="border-top:1px solid #1a1a1a; border-bottom:none;">
+            <div class="service-header" onclick="toggleService('refresh')">
+                <span>Refresh Package</span>
+                <span>▼</span>
+            </div>
+            <div id="service-refresh" class="service-body">
+                The refresh package is the most in‑depth service available, designed to bring a vehicle as close to like‑new condition as possible. The interior receives a full restoration that includes deep extraction, stain removal, steam cleaning, and detailed attention to every surface, with the seats removed to allow for an even more thorough clean underneath and around hard‑to‑reach areas. The exterior is carefully washed, decontaminated, and polished for a clean, even finish, and the entire vehicle is inspected from top to bottom to ensure a consistent, refreshed look. This package includes every add‑on option by default and often takes the full day to complete due to the level of detail involved.
+            </div>
+        </div>
 
     </div>
 
@@ -331,11 +339,68 @@ footer a {
 
         <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Add‑ons</h4>
 
-        <label id="tireShineLabel"><input type="checkbox" id="tireShine" value="10" onclick="updateTotal()">Tire Shine — $10</label>
-        <label><input type="checkbox" value="40" onclick="updateTotal()">Seat Removal — $40</label>
-        <label><input type="checkbox" value="40" onclick="updateTotal()">Headlight Restoration — $40</label>
-        <label><input type="checkbox" value="30" onclick="updateTotal()">Engine Bay Cleaning — $30</label>
-        <label><input type="checkbox" value="50" onclick="updateTotal()">Full Body Polishing — $50</label>
+        <!-- Tire Shine -->
+        <div class="addon-item">
+            <label onclick="toggleAddonDesc('addon-tire')">
+                <input type="checkbox" id="tireShine" value="10" onclick="updateTotal(event)">
+                Tire Shine — $10
+            </label>
+            <div id="addon-tire" class="addon-desc">
+                Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Seat Removal -->
+        <div class="addon-item">
+            <label onclick="toggleAddonDesc('addon-seat')">
+                <input type="checkbox" value="40" onclick="updateTotal(event)">
+                Seat Removal — $40
+            </label>
+            <div id="addon-seat" class="addon-desc">
+                Seat removal allows for a much deeper interior clean by giving access to areas that normally can’t be reached. With the seats taken out, dirt, debris, and stains hidden underneath can be fully cleaned, leaving the interior noticeably fresher and more complete.
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Headlight Restoration -->
+        <div class="addon-item">
+            <label onclick="toggleAddonDesc('addon-headlight')">
+                <input type="checkbox" value="40" onclick="updateTotal(event)">
+                Headlight Restoration — $40
+            </label>
+            <div id="addon-headlight" class="addon-desc">
+                Headlight restoration removes the cloudy, yellowed layer that builds up over time and brings back a clear, bright finish. This improves both the look of the vehicle and nighttime visibility.
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Engine Bay Cleaning -->
+        <div class="addon-item">
+            <label onclick="toggleAddonDesc('addon-engine')">
+                <input type="checkbox" value="30" onclick="updateTotal(event)">
+                Engine Bay Cleaning — $30
+            </label>
+            <div id="addon-engine" class="addon-desc">
+                Engine bay cleaning removes dust, grease, and buildup from the engine area using safe cleaning methods. The result is a cleaner, more presentable engine compartment that looks well‑maintained.
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Full Body Polishing -->
+        <div class="addon-item">
+            <label onclick="toggleAddonDesc('addon-polish')">
+                <input type="checkbox" value="50" onclick="updateTotal(event)">
+                Full Body Polishing — $50
+            </label>
+            <div id="addon-polish" class="addon-desc">
+                Full body polishing helps reduce the look of light scratches, swirl marks, and dullness in the paint. It brings back a smoother, glossier finish and makes the vehicle’s exterior look brighter and more refined.
+            </div>
+        </div>
 
         <hr class="divider">
 
@@ -358,7 +423,7 @@ footer a {
         <ul>
             <li><strong>1. Base price:</strong> Depends on the selected service and vehicle size.</li>
             <li><strong>2. Add‑ons:</strong> Any selected add‑ons are added on top of the base price.</li>
-            <li><strong>3. Final total:</strong> Final price = Base price + Add‑ons.</li>
+            <li><strong>3. Final total:</strong> Final price = Base price + add‑ons.</li>
         </ul>
         <button class="info-close-btn" onclick="toggleInfo()">Close</button>
     </div>
@@ -441,7 +506,22 @@ function submitBooking() {
     openBooking();
 }
 
-function updateTotal() {
+function toggleAddonDesc(id) {
+    const box = document.getElementById(id);
+    box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function hideAllAddonDescs() {
+    const descs = document.querySelectorAll(".addon-desc");
+    descs.forEach(d => d.style.display = "none");
+}
+
+function updateTotal(e) {
+    // Prevent label click from double-triggering checkbox change logic
+    if (e && e.target && e.target.type === "checkbox") {
+        // allow normal behavior
+    }
+
     const base = document.querySelector('input[name="base"]:checked');
     const size = document.querySelector('input[name="size"]:checked');
     const addonBoxes = document.querySelectorAll('input[type="checkbox"]');
@@ -470,6 +550,7 @@ function updateTotal() {
             box.disabled = true;
             box.parentElement.classList.add("addon-disabled");
         });
+        hideAllAddonDescs();
     } else {
         // Re-enable all add-ons first
         addonBoxes.forEach(box => {
@@ -477,11 +558,13 @@ function updateTotal() {
             box.parentElement.classList.remove("addon-disabled");
         });
 
-        // Exterior: tire shine included by default, so disable that add-on
+        // Exterior: tire shine included by default, so disable that add-on + hide its description
         if (base.value === "exterior") {
             tireShine.checked = false;
             tireShine.disabled = true;
             tireShine.parentElement.classList.add("addon-disabled");
+            const tireDesc = document.getElementById("addon-tire");
+            if (tireDesc) tireDesc.style.display = "none";
         }
 
         // Add selected add-ons to total

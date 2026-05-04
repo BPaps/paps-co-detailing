@@ -7,6 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     :root {
       --bg-main:#050507;--bg-card:#101015;--accent:#7b5cff;
       --text-main:#f5f5f5;--text-muted:#bfbfbf;--border-subtle:#1a1a1f;
@@ -45,7 +50,6 @@
     .addon-desc{display:none;margin-top:4px;font-size:14px;color:var(--text-muted);line-height:1.5;}
     .addon-desc.visible{display:block;}
 
-    /* side banners */
     .side-banner{
       position:fixed;top:0;width:180px;height:100vh;overflow:hidden;
       opacity:.2;filter:blur(6px);z-index:-10;pointer-events:none;
@@ -54,7 +58,6 @@
     .left-banner{left:0;} .right-banner{right:0;}
     @media(max-width:1200px){.side-banner{display:none;}}
 
-    /* booking popup */
     .booking-popup{
       position:fixed;inset:0;background:rgba(0,0,0,.78);
       display:none;align-items:center;justify-content:center;z-index:1000;
@@ -77,7 +80,6 @@
     }
     .info-close-btn:hover{background:#22222b;border-color:#444457;color:#fff;}
 
-    /* price info popup */
     #priceInfoPopup{
       position:fixed;inset:0;background:rgba(0,0,0,.78);
       display:none;align-items:center;justify-content:center;z-index:2000;
@@ -102,11 +104,19 @@
     @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
     @keyframes slideUp{from{transform:translateY(20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
 
-    @media(max-width:640px){
-      main{padding:28px 14px 40px;}
-      h1{font-size:26px;} h2{font-size:20px;}
-      .booking-content,.price-info-box{margin:0 16px;}
+    .back-to-top {
+      display:block;
+      margin-top:20px;
+      font-size:14px;
+      color:#dcdcff;
+      text-decoration:none;
+      letter-spacing:0.5px;
+      transition:color .2s ease;
     }
+    .back-to-top:hover {
+      color:#ffffff;
+    }
+
   </style>
 </head>
 
@@ -121,9 +131,24 @@
 </div>
 
 <main>
+<a id="top"></a>
   <!-- HERO -->
   <section>
     <h1>Paps & Co Car Detailing</h1>
+
+    <p onclick="countSloganClick()" style="
+      font-size:20px;
+      color:#e6e6e6;
+      margin-top:4px;
+      font-family:'Cinzel',serif;
+      letter-spacing:0.5px;
+      cursor:pointer;
+      text-shadow: 0 0 6px rgba(123, 92, 255, 0.6),
+                   0 0 12px rgba(123, 92, 255, 0.4);
+    ">
+      Detailing Done Right.
+    </p>
+
     <p style="font-size:16px;color:#dcdcdc;max-width:640px;margin-top:6px;">
       Premium automotive detailing in Winnipeg, Manitoba — focused on clean, sharp, and honest results. Build your package, see your price, and book the way that works best for you.
     </p>
@@ -307,7 +332,10 @@
     <div class="card">
       <p style="font-size:16px;color:#dcdcdc;">
         Paps & Co is focused on giving every vehicle the premium treatment it deserves.
-        The goal is simple — clean, sharp, and honest results that make your car feel refreshed every time you get behind the wheel. Quality matters here. Every detail is done with care, patience, and a commitment to delivering a premium experience from start to finish.
+        The goal is simple — clean, sharp, and honest results that make your car feel refreshed every time you get behind the wheel.
+      </p>
+      <p style="font-size:16px;color:#cfcfcf;margin-top:10px;">
+        Quality matters here. Every detail is done with care, patience, and a commitment to delivering a premium experience from start to finish.
       </p>
     </div>
   </section>
@@ -318,7 +346,10 @@
     <div class="card">
       <p style="font-size:16px;color:#dcdcdc;">
         My name is Ben Papineau, I am 20 years old, and I have always had a passion for cars.
-        I started Paps & Co because I believe every vehicle deserves premium treatment — the kind of service that feels personal, careful, and genuinely satisfying. I have always loved the feeling of good, high‑quality service, and that is exactly what I want to deliver to every customer who trusts me with their vehicle.
+        I started Paps & Co because I believe every vehicle deserves premium treatment — the kind of service that feels personal, careful, and genuinely satisfying.
+      </p>
+      <p style="font-size:16px;color:#cfcfcf;margin-top:10px;">
+        I have always loved the feeling of good, high‑quality service, and that is exactly what I want to deliver to every customer who trusts me with their vehicle.
       </p>
     </div>
   </section>
@@ -327,12 +358,26 @@
   <section>
     <div class="card" style="text-align:center;">
       <p style="font-size:14px;color:#9f9f9f;">© Paps & Co Car Detailing — Winnipeg, Manitoba</p>
+
       <p style="font-size:14px;color:#bfbfbf;margin-top:6px;">
         Email:
         <a href="mailto:benpapineauwpg@gmail.com" style="color:#dcdcff;text-decoration:none;">
           benpapineauwpg@gmail.com
         </a>
       </p>
+
+      <p style="font-size:14px;color:#bfbfbf;margin-top:4px;">
+        Phone:
+        <a href="tel:2045099595" style="color:#dcdcff;text-decoration:none;">
+          (204) 509‑9595
+        </a>
+      </p>
+
+      <p style="font-size:13px;color:#7a7a7a;margin-top:10px;">
+        Website built by Ben Papineau
+      </p>
+
+      <a href="#top" class="back-to-top">Back to Top</a>
     </div>
   </section>
 </main>
@@ -391,6 +436,30 @@
   </div>
 </div>
 
+<!-- PURPLE EASTER EGG PANEL -->
+<div id="purpleInfo" style="
+  position: fixed;
+  bottom: -200px;
+  left: 0;
+  width: 100%;
+  background: rgba(10, 10, 15, 0.96);
+  border-top: 1px solid #2a2a33;
+  padding: 20px;
+  text-align: center;
+  color: #dcdcdc;
+  font-size: 15px;
+  line-height: 1.55;
+  box-shadow: 0 -10px 25px rgba(0,0,0,0.6);
+  transition: bottom 0.35s ease;
+  z-index: 3000;
+">
+  <p style="max-width: 700px; margin: 0 auto;">
+    Tyrian Purple has always been a symbol of rarity, discipline, and mastery.
+    It was historically one of the most expensive colors in the world, reserved for emperors and royalty.
+    I chose it because it represents hard work, dedication, and the pursuit of excellence — the same values I put into every detail job.
+  </p>
+</div>
+
 <script>
   const basePrices={
     exterior:{small:80,medium:100,large:120},
@@ -398,6 +467,16 @@
     full:{small:150,medium:180,large:210},
     refresh:{small:60,medium:75,large:90}
   };
+
+  let sloganClicks = 0;
+
+  function countSloganClick() {
+    sloganClicks++;
+    if (sloganClicks >= 10) {
+      togglePurpleInfo();
+      sloganClicks = 0;
+    }
+  }
 
   function updateTotal(e){
     let base=document.querySelector('input[name="base"]:checked');
@@ -446,6 +525,23 @@
   function togglePriceInfo(){
     document.getElementById("priceInfoPopup").classList.toggle("visible");
   }
+
+  function togglePurpleInfo() {
+    const panel = document.getElementById("purpleInfo");
+    if (panel.style.bottom === "0px") {
+      panel.style.bottom = "-200px";
+    } else {
+      panel.style.bottom = "0px";
+    }
+  }
+
+  document.addEventListener("click", function(e) {
+    const panel = document.getElementById("purpleInfo");
+    const slogan = document.querySelector("p[onclick='countSloganClick()']");
+    if (!panel.contains(e.target) && e.target !== slogan) {
+      panel.style.bottom = "-200px";
+    }
+  });
 </script>
 
 </body>

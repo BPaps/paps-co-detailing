@@ -215,64 +215,48 @@
             color: #ffffff;
         }
 
-        /* Side banners */
+<!-- ===== SIDE BANNERS ===== -->
+<style>
+    .side-banner {
+        position: fixed;
+        top: 0;
+        width: 200px;
+        height: 100vh;
+        overflow: hidden;
+        opacity: 0.18;
+        filter: blur(3px);
+        z-index: -1;
+    }
+
+    .side-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .left-banner {
+        left: 0;
+    }
+
+    .right-banner {
+        right: 0;
+    }
+
+    /* Hide banners on smaller screens */
+    @media (max-width: 1024px) {
         .side-banner {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 120px;
-            z-index: 900;
+            display: none;
         }
+    }
+</style>
 
-        .side-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+<div class="side-banner left-banner">
+    <img src="https://github.com/BPaps/paps-co-car-detailing/blob/main/OIP.webp?raw=true" alt="Left Banner">
+</div>
 
-        .side-banner.left {
-            left: 10px;
-        }
-
-        .side-banner.right {
-            right: 10px;
-        }
-
-        @media (max-width: 1024px) {
-            .side-banner {
-                display: none;
-            }
-        }
-
-        @media (max-width: 640px) {
-            main {
-                padding: 28px 14px 40px;
-            }
-
-            h1 {
-                font-size: 26px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            .booking-content {
-                margin: 0 16px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Side banners -->
-    <div class="side-banner left">
-        <img src="side-banner-left.png?raw=true" alt="Paps & Co Detailing">
-    </div>
-    <div class="side-banner right">
-        <img src="side-banner-right.png?raw=true" alt="Paps & Co Detailing">
-    </div>
-
+<div class="side-banner right-banner">
+    <img src="https://github.com/BPaps/paps-co-car-detailing/blob/main/wp9857341.jpg?raw=true" alt="Right Banner">
+</div>
     <main>
         <!-- HERO / INTRO -->
         <section>

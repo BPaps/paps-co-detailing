@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-
     html {
       scroll-behavior: smooth;
     }
@@ -19,9 +18,12 @@
       --text-main:#f5f5f5;
       --text-muted:#bfbfbf;
       --border-subtle:#1a1a22;
+      --accent-soft:rgba(123,92,255,0.35);
     }
 
-    * { box-sizing:border-box; }
+    * {
+      box-sizing:border-box;
+    }
 
     body {
       margin:0;
@@ -41,10 +43,19 @@
       letter-spacing:.03em;
     }
 
-    h1 { font-size:32px; margin:0 0 8px; }
-    h2 { font-size:24px; margin:0 0 16px; }
+    h1 {
+      font-size:32px;
+      margin:0 0 8px;
+    }
 
-    section { margin-bottom:32px; }
+    h2 {
+      font-size:24px;
+      margin:0 0 16px;
+    }
+
+    section {
+      margin-bottom:32px;
+    }
 
     /* SHARP CARDS */
     .card {
@@ -69,7 +80,8 @@
       cursor:pointer;
     }
 
-    input[type=radio], input[type=checkbox] {
+    input[type=radio],
+    input[type=checkbox] {
       margin-right:8px;
       accent-color:var(--accent);
     }
@@ -118,10 +130,23 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.45);
     }
 
-    .addon-item { margin-bottom:6px; }
-    .addon-item label { display:flex; align-items:center; gap:6px; }
-    .addon-item span { color:var(--text-main); }
-    .addon-item span:hover { color:#e0ddff; }
+    .addon-item {
+      margin-bottom:6px;
+    }
+
+    .addon-item label {
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .addon-item span {
+      color:var(--text-main);
+    }
+
+    .addon-item span:hover {
+      color:#e0ddff;
+    }
 
     .addon-desc {
       display:none;
@@ -131,7 +156,15 @@
       line-height:1.5;
     }
 
-    .addon-desc.visible { display:block; }
+    .addon-desc.visible {
+      display:block;
+    }
+
+    /* DISABLED ADD-ON STYLE */
+    .disabled-addon {
+      opacity:0.35;
+      pointer-events:none;
+    }
 
     /* SIDE BANNERS — SHARPER */
     .side-banner {
@@ -153,11 +186,18 @@
       transform:scale(1.1);
     }
 
-    .left-banner { left:0; }
-    .right-banner { right:0; }
+    .left-banner {
+      left:0;
+    }
+
+    .right-banner {
+      right:0;
+    }
 
     @media(max-width:1200px){
-      .side-banner { display:none; }
+      .side-banner {
+        display:none;
+      }
     }
 
     /* POPUPS — SHARP */
@@ -171,7 +211,9 @@
       z-index:1000;
     }
 
-    .booking-popup.visible { display:flex; }
+    .booking-popup.visible {
+      display:flex;
+    }
 
     .booking-content {
       background:#0d0d12;
@@ -231,7 +273,9 @@
       z-index:2000;
     }
 
-    #priceInfoPopup.visible { display:flex; }
+    #priceInfoPopup.visible {
+      display:flex;
+    }
 
     .price-info-box {
       background:#0d0d12;
@@ -250,7 +294,9 @@
       text-align:center;
     }
 
-    .price-info-section { margin-top:18px; }
+    .price-info-section {
+      margin-top:18px;
+    }
 
     .price-info-section h4 {
       font-size:16px;
@@ -289,9 +335,117 @@
       color:#ffffff;
     }
 
+    /* COMPARISON TABLE */
+    .comparison-section-title {
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .badge {
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      border:1px solid var(--accent-soft);
+      color:#e4e0ff;
+      background:rgba(10,10,20,0.9);
+    }
+
+    .comparison-table-wrapper {
+      overflow-x:auto;
+      margin-top:10px;
+    }
+
+    table.comparison-table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+      color:#dcdcdc;
+      background:linear-gradient(135deg,#050507,#090910);
+      border-radius:6px;
+      overflow:hidden;
+      border:1px solid #1a1a22;
+    }
+
+    table.comparison-table th,
+    table.comparison-table td {
+      padding:10px 10px;
+      border-bottom:1px solid #1a1a22;
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    table.comparison-table th:first-child,
+    table.comparison-table td:first-child {
+      text-align:left;
+      font-weight:500;
+      color:#f5f5f5;
+      background:rgba(10,10,18,0.9);
+    }
+
+    table.comparison-table th {
+      background:rgba(15,15,25,0.95);
+      font-weight:600;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+    }
+
+    table.comparison-table tr:nth-child(even) td:not(:first-child) {
+      background:rgba(12,12,18,0.9);
+    }
+
+    table.comparison-table tr:nth-child(odd) td:not(:first-child) {
+      background:rgba(8,8,14,0.9);
+    }
+
+    table.comparison-table tr:hover td {
+      background:rgba(20,20,32,0.95);
+    }
+
+    .check-mark {
+      color:#9cffc7;
+      font-weight:600;
+    }
+
+    .dash-mark {
+      color:#666a75;
+    }
+
+    .table-note {
+      font-size:13px;
+      color:#9f9f9f;
+      margin-top:10px;
+    }
+
+    .pill-highlight {
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      border:1px solid rgba(255,255,255,0.12);
+      color:#f5f5f5;
+      background:rgba(255,255,255,0.03);
+    }
+
+    .pill-best-value {
+      border-color:rgba(156,255,199,0.4);
+      color:#c9ffe2;
+      background:rgba(0,80,40,0.25);
+    }
+
+    .pill-premium {
+      border-color:rgba(123,92,255,0.6);
+      color:#e4ddff;
+      background:rgba(40,20,90,0.4);
+    }
   </style>
 </head>
-
 <body>
 
 <div class="side-banner left-banner">
@@ -304,6 +458,7 @@
 
 <main>
 <a id="top"></a>
+
   <!-- HERO -->
   <section>
     <h1>Papineau Car Detailing</h1>
@@ -315,14 +470,15 @@
       font-family:'Cinzel',serif;
       letter-spacing:0.5px;
       cursor:pointer;
-      text-shadow: 0 0 6px rgba(123, 92, 255, 0.6),
-                   0 0 12px rgba(123, 92, 255, 0.4);
+      text-shadow:0 0 6px rgba(123,92,255,0.6),
+                   0 0 12px rgba(123,92,255,0.4);
     ">
       Detailing Done Right.
     </p>
 
     <p style="font-size:16px;color:#dcdcdc;max-width:640px;margin-top:6px;">
-      Premium automotive detailing in Winnipeg, Manitoba — focused on clean, sharp, and honest results. Build your package, see your price, and book the way that works best for you.
+      Premium automotive detailing in Winnipeg, Manitoba — focused on clean, sharp, and honest results.
+      Build your package, see your price, and book the way that works best for you.
     </p>
   </section>
 
@@ -338,7 +494,7 @@
       <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
       <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
       <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
-      <label><input type="radio" name="base" value="refresh" onclick="updateTotal()">Refresh Package</label>
+      <label><input type="radio" name="base" value="signature" onclick="updateTotal()">Signature Package</label>
 
       <hr class="divider">
 
@@ -354,7 +510,7 @@
       <!-- Tire Shine -->
       <div class="addon-item">
         <label>
-          <input type="checkbox" value="10" onclick="updateTotal(event)">
+          <input type="checkbox" value="10" onclick="updateTotal()">
           <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
         </label>
         <div id="addon-tire" class="addon-desc">
@@ -364,10 +520,10 @@
 
       <hr class="divider">
 
-      <!-- Seat Removal (Full Detail only) -->
+      <!-- Seat Removal -->
       <div class="addon-item">
         <label>
-          <input type="checkbox" value="75" onclick="updateTotal(event)">
+          <input type="checkbox" value="75" onclick="updateTotal()">
           <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $75</span>
         </label>
         <div id="addon-seat" class="addon-desc">
@@ -380,7 +536,7 @@
       <!-- Headlight Restoration -->
       <div class="addon-item">
         <label>
-          <input type="checkbox" value="50" onclick="updateTotal(event)">
+          <input type="checkbox" value="50" onclick="updateTotal()">
           <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $50</span>
         </label>
         <div id="addon-headlight" class="addon-desc">
@@ -390,10 +546,10 @@
 
       <hr class="divider">
 
-      <!-- Engine Bay Cleaning (Full Detail only) -->
+      <!-- Engine Bay Cleaning -->
       <div class="addon-item">
         <label>
-          <input type="checkbox" value="25" onclick="updateTotal(event)">
+          <input type="checkbox" value="25" onclick="updateTotal()">
           <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $25</span>
         </label>
         <div id="addon-engine" class="addon-desc">
@@ -403,10 +559,10 @@
 
       <hr class="divider">
 
-      <!-- Full Body Polishing (Full Detail only) -->
+      <!-- Full Body Polishing -->
       <div class="addon-item">
         <label>
-          <input type="checkbox" value="150" onclick="updateTotal(event)">
+          <input type="checkbox" value="150" onclick="updateTotal()">
           <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $150</span>
         </label>
         <div id="addon-polish" class="addon-desc">
@@ -425,10 +581,113 @@
 
       <p id="summaryBox" style="margin-top:5px;color:#dcdcdc;font-size:16px;"></p>
 
-      <!-- NEW BREAKDOWN BOX -->
       <div id="breakdownBox" style="margin-top:10px;color:#bfbfbf;font-size:14px;line-height:1.5;"></div>
 
       <button class="book-btn" onclick="openBooking()">Book Now</button>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section>
+    <h2 class="comparison-section-title">
+      Compare Packages
+      <span class="badge">See What’s Included</span>
+    </h2>
+
+    <div class="card">
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <tr>
+            <th>Service / Feature</th>
+            <th>Exterior</th>
+            <th>Interior</th>
+            <th>
+              Full Detail<br>
+              <span class="pill-highlight pill-best-value">Best Value</span>
+            </th>
+            <th>
+              Signature<br>
+              <span class="pill-highlight pill-premium">Premium</span>
+            </th>
+          </tr>
+
+          <tr>
+            <td>Exterior Wash</td>
+            <td class="check-mark">✔</td>
+            <td class="dash-mark">—</td>
+            <td class="check-mark">✔</td>
+            <td class="check-mark">✔</td>
+          </tr>
+
+          <tr>
+            <td>Interior Deep Clean</td>
+            <td class="dash-mark">—</td>
+            <td class="check-mark">✔</td>
+            <td class="check-mark">✔</td>
+            <td class="check-mark">✔</td>
+          </tr>
+
+          <tr>
+            <td>Tire Shine</td>
+            <td>Optional</td>
+            <td class="dash-mark">—</td>
+            <td>Optional</td>
+            <td class="check-mark">✔ Included</td>
+          </tr>
+
+          <tr>
+            <td>Seat Removal</td>
+            <td class="dash-mark">—</td>
+            <td>Optional</td>
+            <td>Optional</td>
+            <td class="check-mark">✔ Included</td>
+          </tr>
+
+          <tr>
+            <td>Engine Bay Cleaning</td>
+            <td>Optional</td>
+            <td class="dash-mark">—</td>
+            <td>Optional</td>
+            <td class="check-mark">✔ Included</td>
+          </tr>
+
+          <tr>
+            <td>Headlight Restoration</td>
+            <td>Optional</td>
+            <td class="dash-mark">—</td>
+            <td>Optional</td>
+            <td class="check-mark">✔ Included</td>
+          </tr>
+
+          <tr>
+            <td>Full Body Polishing</td>
+            <td>Optional</td>
+            <td class="dash-mark">—</td>
+            <td>Optional</td>
+            <td class="check-mark">✔ Included</td>
+          </tr>
+
+          <tr>
+            <td>Price Range</td>
+            <td>$100–$160</td>
+            <td>$120–$180</td>
+            <td>$220–$300</td>
+            <td>$380–$460</td>
+          </tr>
+
+          <tr>
+            <td>Best For</td>
+            <td>Exterior refresh</td>
+            <td>Interior restoration</td>
+            <td>Full inside & out</td>
+            <td>All‑in premium</td>
+          </tr>
+        </table>
+      </div>
+
+      <p class="table-note">
+        Optional add‑ons vary by package. Signature Package includes all add‑ons automatically.
+      </p>
     </div>
   </section>
 
@@ -498,7 +757,7 @@
     </div>
   </section>
 
-  <!-- FOOTER / CONTACT -->
+  <!-- FOOTER -->
   <section>
     <div class="card" style="text-align:center;">
       <p style="font-size:14px;color:#9f9f9f;">© Papineau Car Detailing — Winnipeg, Manitoba</p>
@@ -524,16 +783,18 @@
       <a href="#top" class="back-to-top">Back to Top</a>
     </div>
   </section>
-</main>
 
+</main>
 <!-- BOOKING POPUP -->
 <div id="bookingPopup" class="booking-popup">
   <div class="booking-content">
     <h3 style="margin-top:0;margin-bottom:10px;font-size:20px;">Book Your Detail</h3>
     <p style="font-size:16px;color:#cfcfcf;margin-bottom:20px;">Choose how you would like to book your appointment.</p>
+
     <a href="mailto:benpapineauwpg@gmail.com" class="booking-link">Email</a>
     <a href="tel:2045099595" class="booking-link">Call</a>
     <a href="sms:2045099595" class="booking-link">Text</a>
+
     <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">Close</button>
   </div>
 </div>
@@ -545,7 +806,7 @@
 
     <div class="price-info-section">
       <h4>Base Service</h4>
-      <p>Your starting price comes from the service you choose — Exterior, Interior, Full Detail, or Refresh Package.</p>
+      <p>Your starting price comes from the service you choose — Exterior, Interior, Full Detail, or Signature Package.</p>
     </div>
 
     <hr class="price-info-divider">
@@ -572,8 +833,8 @@
     <hr class="price-info-divider">
 
     <div class="price-info-section">
-      <h4>Final Notes</h4>
-      <p>This tool gives you a transparent estimate before booking. Final pricing may vary depending on dirtiness level and vehicle condition.</p>
+      <h4>Signature Package</h4>
+      <p>The Signature Package includes every add‑on automatically and disables manual selection.</p>
     </div>
 
     <button class="info-close-btn" style="margin-top:18px;" onclick="togglePriceInfo()">Close</button>
@@ -604,165 +865,181 @@
   </p>
 </div>
 
+<!-- FULL UPDATED JAVASCRIPT -->
 <script>
-  /* BASE PRICES */
-  const basePrices = {
-    exterior:{small:80,medium:100,large:120},
-    interior:{small:90,medium:110,large:130},
-    full:{small:150,medium:180,large:210},
-    refresh:{small:60,medium:75,large:90}
-  };
+/* UPDATED BASE PRICES */
+const basePrices = {
+  exterior: { small: 100, medium: 130, large: 160 },
+  interior: { small: 120, medium: 150, large: 180 },
+  full:     { small: 220, medium: 260, large: 300 },
+  signature:{ small: 380, medium: 420, large: 460 }
+};
 
-  /* SLOGAN EASTER EGG COUNTER */
-  let sloganClicks = 0;
-
-  function countSloganClick() {
-    sloganClicks++;
-    if (sloganClicks >= 10) {
-      togglePurpleInfo();
-      sloganClicks = 0;
-    }
+/* SLOGAN EASTER EGG */
+let sloganClicks = 0;
+function countSloganClick() {
+  sloganClicks++;
+  if (sloganClicks >= 10) {
+    togglePurpleInfo();
+    sloganClicks = 0;
   }
+}
 
-  /* MAIN PRICE CALCULATOR */
-  function updateTotal(e){
-    let base=document.querySelector('input[name="base"]:checked');
-    let size=document.querySelector('input[name="size"]:checked');
-    let total=0, summaryParts=[];
-    let breakdownHTML = "";
+/* MAIN PRICE CALCULATOR */
+function updateTotal() {
+  let base = document.querySelector('input[name="base"]:checked');
+  let size = document.querySelector('input[name="size"]:checked');
 
-    /* Add-on elements */
-    const seat = document.querySelector('#addon-seat').previousElementSibling.querySelector('input');
-    const engine = document.querySelector('#addon-engine').previousElementSibling.querySelector('input');
-    const polish = document.querySelector('#addon-polish').previousElementSibling.querySelector('input');
-    const tire = document.querySelector('#addon-tire').previousElementSibling.querySelector('input');
-    const headlight = document.querySelector('#addon-headlight').previousElementSibling.querySelector('input');
+  let total = 0;
+  let summaryParts = [];
+  let breakdownHTML = "";
 
-    /* Disable restricted add-ons unless Full Detail is selected */
-    if (base && base.value !== "full") {
-      seat.checked = false;
-      engine.checked = false;
-      polish.checked = false;
+  /* Add-on elements */
+  const tire = document.querySelector('#addon-tire').previousElementSibling.querySelector('input');
+  const seat = document.querySelector('#addon-seat').previousElementSibling.querySelector('input');
+  const headlight = document.querySelector('#addon-headlight').previousElementSibling.querySelector('input');
+  const engine = document.querySelector('#addon-engine').previousElementSibling.querySelector('input');
+  const polish = document.querySelector('#addon-polish').previousElementSibling.querySelector('input');
 
-      seat.disabled = true;
-      engine.disabled = true;
-      polish.disabled = true;
-    } else {
-      seat.disabled = false;
-      engine.disabled = false;
-      polish.disabled = false;
-    }
+  const allAddons = [tire, seat, headlight, engine, polish];
 
-    /* Base + Size */
-    if(base && size){
-      let b=base.value, s=size.value;
-      let baseCost = basePrices[b][s];
-      total += baseCost;
+  /* RESET ALL ADD-ONS */
+  allAddons.forEach(cb => {
+    cb.disabled = false;
+    cb.classList.remove("disabled-addon");
+  });
 
-      let baseLabel={
-        exterior:"Exterior Detail",
-        interior:"Interior Detail",
-        full:"Full Detail",
-        refresh:"Refresh Package"
-      }[b];
+  /* APPLY RULES BASED ON BASE SERVICE */
+  if (base) {
+    switch (base.value) {
 
-      let sizeLabel={
-        small:"Small (Sedan/Coupe)",
-        medium:"Medium (SUV/Crossover)",
-        large:"Large (Truck/Minivan)"
-      }[s];
+      case "exterior":
+        seat.disabled = true;
+        seat.classList.add("disabled-addon");
+        break;
 
-      summaryParts.push(baseLabel+" — "+sizeLabel);
-      breakdownHTML += <strong>${baseLabel} (${sizeLabel})</strong>: $${baseCost}<br>;
-    }
+      case "interior":
+        tire.disabled = true;
+        headlight.disabled = true;
+        engine.disabled = true;
+        polish.disabled = true;
 
-    /* Add-ons */
-    const addonCheckboxes=document.querySelectorAll('.addon-item input[type="checkbox"]');
-    let addonLabels=[];
+        tire.classList.add("disabled-addon");
+        headlight.classList.add("disabled-addon");
+        engine.classList.add("disabled-addon");
+        polish.classList.add("disabled-addon");
+        break;
 
-    addonCheckboxes.forEach(cb=>{
-      if(cb.checked){
+      case "full":
+        /* All add-ons enabled */
+        break;
 
-        /* Prevent cheating */
-        if ((cb === seat || cb === engine || cb === polish) && base.value !== "full") {
-          alert("This add-on requires the Full Detail package.");
+      case "signature":
+        /* Disable ALL add-ons */
+        allAddons.forEach(cb => {
+          cb.disabled = true;
           cb.checked = false;
-          return;
-        }
-
-        let addonCost = parseFloat(cb.value || 0);
-        total += addonCost;
-
-        const span = cb.parentElement.querySelector('span');
-        let label = span ? span.textContent.trim() : "Add-on";
-
-        addonLabels.push(label);
-        breakdownHTML += ${label}: $${addonCost}<br>;
-      }
-    });
-
-    if(addonLabels.length>0){
-      summaryParts.push("Add‑ons: "+addonLabels.join(", "));
-    }
-
-    /* AUTO-UPGRADE TO COMPLETE RESTORATION */
-    const allAddonsSelected =
-      tire.checked &&
-      headlight.checked &&
-      seat.checked &&
-      engine.checked &&
-      polish.checked;
-
-    if (base && base.value === "full" && allAddonsSelected) {
-      total = 150 + 75 + 25 + 50 + 150 + 10; 
-      summaryParts = ["Complete Restoration Package"];
-      breakdownHTML = 
-        <strong>Complete Restoration Package</strong><br>
-        Full Detail + All Add-ons Included
-      ;
-    }
-
-    /* Update UI */
-    document.getElementById("totalPrice").innerText="$"+total.toString();
-    document.getElementById("summaryBox").innerText=summaryParts.length>0 ? summaryParts.join(" | ") : "No selections yet.";
-    document.getElementById("breakdownBox").innerHTML = breakdownHTML || "";
-  }
-
-  /* TOGGLE ADD-ON DESCRIPTION */
-  function toggleAddonDesc(id){
-    const el=document.getElementById(id);
-    if(!el)return;
-    el.classList.toggle("visible");
-  }
-
-  /* BOOKING POPUP */
-  function openBooking(){
-    document.getElementById("bookingPopup").classList.toggle("visible");
-  }
-
-  /* PRICE INFO POPUP */
-  function togglePriceInfo(){
-    document.getElementById("priceInfoPopup").classList.toggle("visible");
-  }
-
-  /* EASTER EGG PANEL */
-  function togglePurpleInfo() {
-    const panel = document.getElementById("purpleInfo");
-    if (panel.style.bottom === "0px") {
-      panel.style.bottom = "-200px";
-    } else {
-      panel.style.bottom = "0px";
+          cb.classList.add("disabled-addon");
+        });
+        break;
     }
   }
 
-  /* CLOSE EASTER EGG WHEN CLICKING OUTSIDE */
-  document.addEventListener("click", function(e) {
-    const panel = document.getElementById("purpleInfo");
-    const slogan = document.querySelector("p[onclick='countSloganClick()']");
-    if (!panel.contains(e.target) && e.target !== slogan) {
-      panel.style.bottom = "-200px";
+  /* BASE + SIZE PRICE */
+  if (base && size) {
+    let b = base.value;
+    let s = size.value;
+
+    let baseCost = basePrices[b][s];
+    total += baseCost;
+
+    let baseLabel = {
+      exterior: "Exterior Detail",
+      interior: "Interior Detail",
+      full: "Full Detail",
+      signature: "Signature Package"
+    }[b];
+
+    let sizeLabel = {
+      small: "Small (Sedan/Coupe)",
+      medium: "Medium (SUV/Crossover)",
+      large: "Large (Truck/Minivan)"
+    }[s];
+
+    summaryParts.push(`${baseLabel} — ${sizeLabel}`);
+    breakdownHTML += `<strong>${baseLabel} (${sizeLabel})</strong>: $${baseCost}<br>`;
+  }
+
+  /* SIGNATURE PACKAGE OVERRIDE */
+  if (base && base.value === "signature") {
+    summaryParts = ["Signature Package — All services included"];
+    breakdownHTML = `<strong>Signature Package</strong><br>All services + all add-ons included`;
+
+    document.getElementById("totalPrice").innerText = "$" + total;
+    document.getElementById("summaryBox").innerText = summaryParts.join(" | ");
+    document.getElementById("breakdownBox").innerHTML = breakdownHTML;
+    return;
+  }
+
+  /* ADD-ONS */
+  const addonCheckboxes = document.querySelectorAll('.addon-item input[type="checkbox"]');
+  let addonLabels = [];
+
+  addonCheckboxes.forEach(cb => {
+    if (cb.checked && !cb.disabled) {
+      let addonCost = parseFloat(cb.value || 0);
+      total += addonCost;
+
+      const span = cb.parentElement.querySelector('span');
+      let label = span ? span.textContent.trim() : "Add-on";
+
+      addonLabels.push(label);
+      breakdownHTML += `${label}: $${addonCost}<br>`;
     }
   });
+
+  if (addonLabels.length > 0) {
+    summaryParts.push("Add‑ons: " + addonLabels.join(", "));
+  }
+
+  /* UPDATE UI */
+  document.getElementById("totalPrice").innerText = "$" + total;
+  document.getElementById("summaryBox").innerText =
+    summaryParts.length > 0 ? summaryParts.join(" | ") : "No selections yet.";
+  document.getElementById("breakdownBox").innerHTML = breakdownHTML;
+}
+
+/* TOGGLE ADD-ON DESCRIPTION */
+function toggleAddonDesc(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle("visible");
+}
+
+/* BOOKING POPUP */
+function openBooking() {
+  document.getElementById("bookingPopup").classList.toggle("visible");
+}
+
+/* PRICE INFO POPUP */
+function togglePriceInfo() {
+  document.getElementById("priceInfoPopup").classList.toggle("visible");
+}
+
+/* EASTER EGG PANEL */
+function togglePurpleInfo() {
+  const panel = document.getElementById("purpleInfo");
+  panel.style.bottom = panel.style.bottom === "0px" ? "-200px" : "0px";
+}
+
+/* CLOSE EASTER EGG WHEN CLICKING OUTSIDE */
+document.addEventListener("click", function(e) {
+  const panel = document.getElementById("purpleInfo");
+  const slogan = document.querySelector("p[onclick='countSloganClick()']");
+  if (!panel.contains(e.target) && e.target !== slogan) {
+    panel.style.bottom = "-200px";
+  }
+});
 </script>
 
 </body>

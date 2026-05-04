@@ -32,6 +32,19 @@
       color:var(--text-main);
     }
 
+    /* SUBTLE PURPLE BACKGROUND GLOW */
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      background:radial-gradient(
+        circle at center,
+        rgba(123,92,255,0.12),
+        rgba(5,5,7,1)
+      );
+      z-index:-20;
+    }
+
     main {
       max-width:1100px;
       margin:0 auto;
@@ -444,10 +457,94 @@
       color:#e4ddff;
       background:rgba(40,20,90,0.4);
     }
+
+    /* SHIELD LOGO */
+    .top-right-logo {
+      position:fixed;
+      top:20px;
+      right:20px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      z-index:3000;
+    }
+
+    .shield-logo {
+      width:54px;
+      height:64px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shield-logo::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(145deg,#1a1a22,#0d0d12);
+      border-radius:6px 6px 10px 10px;
+      clip-path:polygon(
+        50% 0%,
+        90% 20%,
+        90% 70%,
+        50% 100%,
+        10% 70%,
+        10% 20%
+      );
+      border:2px solid var(--accent);
+      box-shadow:
+        0 0 12px rgba(123,92,255,0.45),
+        inset 0 0 10px rgba(123,92,255,0.25);
+    }
+
+    .shield-inner {
+      position:absolute;
+      inset:6px;
+      background:rgba(10,10,20,0.7);
+      border-radius:4px 4px 8px 8px;
+      clip-path:polygon(
+        50% 0%,
+        88% 22%,
+        88% 68%,
+        50% 96%,
+        12% 68%,
+        12% 22%
+      );
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shield-letter {
+      font-family:'Cinzel',serif;
+      font-size:28px;
+      font-weight:600;
+      color:var(--accent);
+      text-shadow:0 0 8px rgba(123,92,255,0.6);
+    }
+
+    .logo-text {
+      font-family:'Cinzel',serif;
+      font-size:16px;
+      color:#e6e6e6;
+      text-shadow:0 0 6px rgba(123,92,255,0.4);
+    }
   </style>
 </head>
 <body>
 
+<!-- TOP-RIGHT SHIELD LOGO -->
+<div class="top-right-logo">
+  <div class="shield-logo">
+    <div class="shield-inner">
+      <span class="shield-letter">P</span>
+    </div>
+  </div>
+  <div class="logo-text">Papineau Car Detailing</div>
+</div>
+
+<!-- SIDE BANNERS -->
 <div class="side-banner left-banner">
   <img src="https://github.com/BPaps/paps-co-car-detailing/blob/main/OIP.webp?raw=true">
 </div>
@@ -459,330 +556,330 @@
 <main>
 <a id="top"></a>
 
-  <!-- HERO -->
-  <section>
-    <h1>Papineau Car Detailing</h1>
+<!-- HERO -->
+<section>
+  <h1>Papineau Car Detailing</h1>
 
-    <p onclick="countSloganClick()" style="
-      font-size:20px;
-      color:#e6e6e6;
-      margin-top:4px;
-      font-family:'Cinzel',serif;
-      letter-spacing:0.5px;
-      cursor:pointer;
-      text-shadow:0 0 6px rgba(123,92,255,0.6),
-                   0 0 12px rgba(123,92,255,0.4);
-    ">
-      Detailing Done Right.
+  <p onclick="countSloganClick()" style="
+    font-size:20px;
+    color:#e6e6e6;
+    margin-top:4px;
+    font-family:'Cinzel',serif;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    text-shadow:0 0 6px rgba(123,92,255,0.6),
+                 0 0 12px rgba(123,92,255,0.4);
+  ">
+    Detailing Done Right.
+  </p>
+
+  <p style="font-size:16px;color:#dcdcdc;max-width:640px;margin-top:6px;">
+    Premium automotive detailing in Winnipeg, Manitoba — focused on clean, sharp, and honest results.
+    Build your package, see your price, and book the way that works best for you.
+  </p>
+</section>
+
+<!-- PACKAGE BUILDER -->
+<section>
+  <h2>Build Your Detail Package</h2>
+  <div class="card">
+    <h3 style="margin-top:0;font-size:22px;border-bottom:1px solid #1a1a1f;padding-bottom:6px;">Package Builder</h3>
+    <p style="font-size:15px;color:#bfbfbf;margin-top:10px;">Choose your base service, vehicle size, and any add‑ons to get an estimated price.</p>
+    <hr class="divider">
+
+    <h4 style="margin:0 0 8px;">Base Service</h4>
+    <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
+    <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
+    <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
+    <label><input type="radio" name="base" value="signature" onclick="updateTotal()">Signature Package</label>
+
+    <hr class="divider">
+
+    <h4 style="margin:0 0 8px;">Vehicle Size</h4>
+    <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
+    <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
+    <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
+
+    <hr class="divider">
+
+    <h4 style="margin:0 0 8px;">Add‑ons</h4>
+
+    <!-- Tire Shine -->
+    <div class="addon-item">
+      <label>
+        <input type="checkbox" value="10" onclick="updateTotal()">
+        <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
+      </label>
+      <div id="addon-tire" class="addon-desc">
+        Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Seat Removal -->
+    <div class="addon-item">
+      <label>
+        <input type="checkbox" value="75" onclick="updateTotal()">
+        <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $75</span>
+      </label>
+      <div id="addon-seat" class="addon-desc">
+        Seat removal allows for a much deeper interior clean by giving access to areas that normally cannot be reached.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Headlight Restoration -->
+    <div class="addon-item">
+      <label>
+        <input type="checkbox" value="50" onclick="updateTotal()">
+        <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $50</span>
+      </label>
+      <div id="addon-headlight" class="addon-desc">
+        Restores clarity and brightness to foggy or yellowed headlights.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Engine Bay Cleaning -->
+    <div class="addon-item">
+      <label>
+        <input type="checkbox" value="25" onclick="updateTotal()">
+        <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $25</span>
+      </label>
+      <div id="addon-engine" class="addon-desc">
+        Removes dust, grease, and buildup from the engine area using safe cleaning methods.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Full Body Polishing -->
+    <div class="addon-item">
+      <label>
+        <input type="checkbox" value="150" onclick="updateTotal()">
+        <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $150</span>
+      </label>
+      <div id="addon-polish" class="addon-desc">
+        Reduces light scratches and swirl marks while restoring gloss.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h4 style="margin:0 0 8px;">
+      Total Estimated Price
+      <span class="info-icon" onclick="togglePriceInfo()">i</span>
+    </h4>
+
+    <p id="totalPrice" class="price" style="font-size:22px;margin:5px 0 10px;">$0</p>
+
+    <p id="summaryBox" style="margin-top:5px;color:#dcdcdc;font-size:16px;"></p>
+
+    <div id="breakdownBox" style="margin-top:10px;color:#bfbfbf;font-size:14px;line-height:1.5;"></div>
+
+    <button class="book-btn" onclick="openBooking()">Book Now</button>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section>
+  <h2 class="comparison-section-title">
+    Compare Packages
+    <span class="badge">See What’s Included</span>
+  </h2>
+
+  <div class="card">
+    <div class="comparison-table-wrapper">
+      <table class="comparison-table">
+        <tr>
+          <th>Service / Feature</th>
+          <th>Exterior</th>
+          <th>Interior</th>
+          <th>
+            Full Detail<br>
+            <span class="pill-highlight pill-best-value">Best Value</span>
+          </th>
+          <th>
+            Signature<br>
+            <span class="pill-highlight pill-premium">Premium</span>
+          </th>
+        </tr>
+
+        <tr>
+          <td>Exterior Wash</td>
+          <td class="check-mark">✔</td>
+          <td class="dash-mark">—</td>
+          <td class="check-mark">✔</td>
+          <td class="check-mark">✔</td>
+        </tr>
+
+        <tr>
+          <td>Interior Deep Clean</td>
+          <td class="dash-mark">—</td>
+          <td class="check-mark">✔</td>
+          <td class="check-mark">✔</td>
+          <td class="check-mark">✔</td>
+        </tr>
+
+        <tr>
+          <td>Tire Shine</td>
+          <td>Optional</td>
+          <td class="dash-mark">—</td>
+          <td>Optional</td>
+          <td class="check-mark">✔ Included</td>
+        </tr>
+
+        <tr>
+          <td>Seat Removal</td>
+          <td class="dash-mark">—</td>
+          <td>Optional</td>
+          <td>Optional</td>
+          <td class="check-mark">✔ Included</td>
+        </tr>
+
+        <tr>
+          <td>Engine Bay Cleaning</td>
+          <td>Optional</td>
+          <td class="dash-mark">—</td>
+          <td>Optional</td>
+          <td class="check-mark">✔ Included</td>
+        </tr>
+
+        <tr>
+          <td>Headlight Restoration</td>
+          <td>Optional</td>
+          <td class="dash-mark">—</td>
+          <td>Optional</td>
+          <td class="check-mark">✔ Included</td>
+        </tr>
+
+        <tr>
+          <td>Full Body Polishing</td>
+          <td>Optional</td>
+          <td class="dash-mark">—</td>
+          <td>Optional</td>
+          <td class="check-mark">✔ Included</td>
+        </tr>
+
+        <tr>
+          <td>Price Range</td>
+          <td>$100–$160</td>
+          <td>$120–$180</td>
+          <td>$220–$300</td>
+          <td>$380–$460</td>
+        </tr>
+
+        <tr>
+          <td>Best For</td>
+          <td>Exterior refresh</td>
+          <td>Interior restoration</td>
+          <td>Full inside & out</td>
+          <td>All‑in premium</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="table-note">
+      Optional add‑ons vary by package. Signature Package includes all add‑ons automatically.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section>
+  <h2>What to Expect</h2>
+  <div class="card">
+    <ul style="color:#dcdcdc;line-height:1.6;">
+      <li><strong>Arrival and Walkthrough</strong> — We confirm your requested services.</li>
+      <li><strong>Estimated Time</strong> — Most details take 1.5 to 4 hours.</li>
+      <li><strong>Personal Items</strong> — Please remove valuables beforehand.</li>
+      <li><strong>Payment</strong> — Cash, e‑transfer, or card accepted.</li>
+      <li><strong>Satisfaction Guarantee</strong> — If something is not right, we fix it.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section>
+  <h2>Service Area</h2>
+  <div class="card">
+    <p style="font-size:16px;color:#dcdcdc;">Based in Winnipeg, Manitoba — proudly serving:</p>
+    <ul style="color:#cfcfcf;line-height:1.6;">
+      <li>St. James</li>
+      <li>Charleswood</li>
+      <li>Transcona</li>
+      <li>East Kildonan</li>
+      <li>West End</li>
+      <li>Downtown Winnipeg</li>
+      <li>Surrounding areas upon request</li>
+    </ul>
+
+    <div style="margin-top:20px;border-radius:6px;overflow:hidden;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44928.76933833732!2d-97.20000000000002!3d49.89500000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea715b5f1b1c4f%3A0x4b0f0e0e0e0e0e0e!2sWinnipeg%2C%20MB!5e0!3m2!1sen!2sca!4v0000000000000"
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2>About</h2>
+  <div class="card">
+    <p style="font-size:16px;color:#dcdcdc;">
+      Papineau Car Detailing is focused on giving every vehicle the premium treatment it deserves.
+      The goal is simple — clean, sharp, and honest results that make your car feel refreshed every time you get behind the wheel.
+    </p>
+    <p style="font-size:16px;color:#cfcfcf;margin-top:10px;">
+      Quality matters here. Every detail is done with care, patience, and a commitment to delivering a premium experience from start to finish.
+    </p>
+  </div>
+</section>
+
+<!-- MY STORY -->
+<section>
+  <h2>My Story</h2>
+  <div class="card">
+    <p style="font-size:16px;color:#dcdcdc;">
+      My name is Ben Papineau, I am 20 years old, and I have always had a passion for cars.
+      I started Papineau Car Detailing because I believe every vehicle deserves premium treatment — the kind of service that feels personal, careful, and genuinely satisfying.
+    </p>
+    <p style="font-size:16px;color:#cfcfcf;margin-top:10px;">
+      I have always loved the feeling of good, high‑quality service, and that is exactly what I want to deliver to every customer who trusts me with their vehicle.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section>
+  <div class="card" style="text-align:center;">
+    <p style="font-size:14px;color:#9f9f9f;">© Papineau Car Detailing — Winnipeg, Manitoba</p>
+
+    <p style="font-size:14px;color:#bfbfbf;margin-top:6px;">
+      Email:
+      <a href="mailto:benpapineauwpg@gmail.com" style="color:#dcdcff;text-decoration:none;">
+        benpapineauwpg@gmail.com
+      </a>
     </p>
 
-    <p style="font-size:16px;color:#dcdcdc;max-width:640px;margin-top:6px;">
-      Premium automotive detailing in Winnipeg, Manitoba — focused on clean, sharp, and honest results.
-      Build your package, see your price, and book the way that works best for you.
+    <p style="font-size:14px;color:#bfbfbf;margin-top:4px;">
+      Phone:
+      <a href="tel:2045099595" style="color:#dcdcff;text-decoration:none;">
+        (204) 509‑9595
+      </a>
     </p>
-  </section>
 
-  <!-- PACKAGE BUILDER -->
-  <section>
-    <h2>Build Your Detail Package</h2>
-    <div class="card">
-      <h3 style="margin-top:0;font-size:22px;border-bottom:1px solid #1a1a1f;padding-bottom:6px;">Package Builder</h3>
-      <p style="font-size:15px;color:#bfbfbf;margin-top:10px;">Choose your base service, vehicle size, and any add‑ons to get an estimated price.</p>
-      <hr class="divider">
+    <p style="font-size:13px;color:#7a7a7a;margin-top:10px;">
+      Website built by Ben Papineau
+    </p>
 
-      <h4 style="margin:0 0 8px;">Base Service</h4>
-      <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
-      <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
-      <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
-      <label><input type="radio" name="base" value="signature" onclick="updateTotal()">Signature Package</label>
-
-      <hr class="divider">
-
-      <h4 style="margin:0 0 8px;">Vehicle Size</h4>
-      <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
-      <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
-      <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
-
-      <hr class="divider">
-
-      <h4 style="margin:0 0 8px;">Add‑ons</h4>
-
-      <!-- Tire Shine -->
-      <div class="addon-item">
-        <label>
-          <input type="checkbox" value="10" onclick="updateTotal()">
-          <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
-        </label>
-        <div id="addon-tire" class="addon-desc">
-          Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <!-- Seat Removal -->
-      <div class="addon-item">
-        <label>
-          <input type="checkbox" value="75" onclick="updateTotal()">
-          <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $75</span>
-        </label>
-        <div id="addon-seat" class="addon-desc">
-          Seat removal allows for a much deeper interior clean by giving access to areas that normally cannot be reached.
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <!-- Headlight Restoration -->
-      <div class="addon-item">
-        <label>
-          <input type="checkbox" value="50" onclick="updateTotal()">
-          <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $50</span>
-        </label>
-        <div id="addon-headlight" class="addon-desc">
-          Restores clarity and brightness to foggy or yellowed headlights.
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <!-- Engine Bay Cleaning -->
-      <div class="addon-item">
-        <label>
-          <input type="checkbox" value="25" onclick="updateTotal()">
-          <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $25</span>
-        </label>
-        <div id="addon-engine" class="addon-desc">
-          Removes dust, grease, and buildup from the engine area using safe cleaning methods.
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <!-- Full Body Polishing -->
-      <div class="addon-item">
-        <label>
-          <input type="checkbox" value="150" onclick="updateTotal()">
-          <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $150</span>
-        </label>
-        <div id="addon-polish" class="addon-desc">
-          Reduces light scratches and swirl marks while restoring gloss.
-        </div>
-      </div>
-
-      <hr class="divider">
-
-      <h4 style="margin:0 0 8px;">
-        Total Estimated Price
-        <span class="info-icon" onclick="togglePriceInfo()">i</span>
-      </h4>
-
-      <p id="totalPrice" class="price" style="font-size:22px;margin:5px 0 10px;">$0</p>
-
-      <p id="summaryBox" style="margin-top:5px;color:#dcdcdc;font-size:16px;"></p>
-
-      <div id="breakdownBox" style="margin-top:10px;color:#bfbfbf;font-size:14px;line-height:1.5;"></div>
-
-      <button class="book-btn" onclick="openBooking()">Book Now</button>
-    </div>
-  </section>
-
-  <!-- COMPARISON TABLE -->
-  <section>
-    <h2 class="comparison-section-title">
-      Compare Packages
-      <span class="badge">See What’s Included</span>
-    </h2>
-
-    <div class="card">
-      <div class="comparison-table-wrapper">
-        <table class="comparison-table">
-          <tr>
-            <th>Service / Feature</th>
-            <th>Exterior</th>
-            <th>Interior</th>
-            <th>
-              Full Detail<br>
-              <span class="pill-highlight pill-best-value">Best Value</span>
-            </th>
-            <th>
-              Signature<br>
-              <span class="pill-highlight pill-premium">Premium</span>
-            </th>
-          </tr>
-
-          <tr>
-            <td>Exterior Wash</td>
-            <td class="check-mark">✔</td>
-            <td class="dash-mark">—</td>
-            <td class="check-mark">✔</td>
-            <td class="check-mark">✔</td>
-          </tr>
-
-          <tr>
-            <td>Interior Deep Clean</td>
-            <td class="dash-mark">—</td>
-            <td class="check-mark">✔</td>
-            <td class="check-mark">✔</td>
-            <td class="check-mark">✔</td>
-          </tr>
-
-          <tr>
-            <td>Tire Shine</td>
-            <td>Optional</td>
-            <td class="dash-mark">—</td>
-            <td>Optional</td>
-            <td class="check-mark">✔ Included</td>
-          </tr>
-
-          <tr>
-            <td>Seat Removal</td>
-            <td class="dash-mark">—</td>
-            <td>Optional</td>
-            <td>Optional</td>
-            <td class="check-mark">✔ Included</td>
-          </tr>
-
-          <tr>
-            <td>Engine Bay Cleaning</td>
-            <td>Optional</td>
-            <td class="dash-mark">—</td>
-            <td>Optional</td>
-            <td class="check-mark">✔ Included</td>
-          </tr>
-
-          <tr>
-            <td>Headlight Restoration</td>
-            <td>Optional</td>
-            <td class="dash-mark">—</td>
-            <td>Optional</td>
-            <td class="check-mark">✔ Included</td>
-          </tr>
-
-          <tr>
-            <td>Full Body Polishing</td>
-            <td>Optional</td>
-            <td class="dash-mark">—</td>
-            <td>Optional</td>
-            <td class="check-mark">✔ Included</td>
-          </tr>
-
-          <tr>
-            <td>Price Range</td>
-            <td>$100–$160</td>
-            <td>$120–$180</td>
-            <td>$220–$300</td>
-            <td>$380–$460</td>
-          </tr>
-
-          <tr>
-            <td>Best For</td>
-            <td>Exterior refresh</td>
-            <td>Interior restoration</td>
-            <td>Full inside & out</td>
-            <td>All‑in premium</td>
-          </tr>
-        </table>
-      </div>
-
-      <p class="table-note">
-        Optional add‑ons vary by package. Signature Package includes all add‑ons automatically.
-      </p>
-    </div>
-  </section>
-
-  <!-- WHAT TO EXPECT -->
-  <section>
-    <h2>What to Expect</h2>
-    <div class="card">
-      <ul style="color:#dcdcdc;line-height:1.6;">
-        <li><strong>Arrival and Walkthrough</strong> — We confirm your requested services.</li>
-        <li><strong>Estimated Time</strong> — Most details take 1.5 to 4 hours.</li>
-        <li><strong>Personal Items</strong> — Please remove valuables beforehand.</li>
-        <li><strong>Payment</strong> — Cash, e‑transfer, or card accepted.</li>
-        <li><strong>Satisfaction Guarantee</strong> — If something is not right, we fix it.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- SERVICE AREA -->
-  <section>
-    <h2>Service Area</h2>
-    <div class="card">
-      <p style="font-size:16px;color:#dcdcdc;">Based in Winnipeg, Manitoba — proudly serving:</p>
-      <ul style="color:#cfcfcf;line-height:1.6;">
-        <li>St. James</li>
-        <li>Charleswood</li>
-        <li>Transcona</li>
-        <li>East Kildonan</li>
-        <li>West End</li>
-        <li>Downtown Winnipeg</li>
-        <li>Surrounding areas upon request</li>
-      </ul>
-
-      <div style="margin-top:20px;border-radius:6px;overflow:hidden;">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44928.76933833732!2d-97.20000000000002!3d49.89500000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea715b5f1b1c4f%3A0x4b0f0e0e0e0e0e0e!2sWinnipeg%2C%20MB!5e0!3m2!1sen!2sca!4v0000000000000"
-          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section>
-    <h2>About</h2>
-    <div class="card">
-      <p style="font-size:16px;color:#dcdcdc;">
-        Papineau Car Detailing is focused on giving every vehicle the premium treatment it deserves.
-        The goal is simple — clean, sharp, and honest results that make your car feel refreshed every time you get behind the wheel.
-      </p>
-      <p style="font-size:16px;color:#cfcfcf;margin-top:10px;">
-        Quality matters here. Every detail is done with care, patience, and a commitment to delivering a premium experience from start to finish.
-      </p>
-    </div>
-  </section>
-
-  <!-- MY STORY -->
-  <section>
-    <h2>My Story</h2>
-    <div class="card">
-      <p style="font-size:16px;color:#dcdcdc;">
-        My name is Ben Papineau, I am 20 years old, and I have always had a passion for cars.
-        I started Papineau Car Detailing because I believe every vehicle deserves premium treatment — the kind of service that feels personal, careful, and genuinely satisfying.
-      </p>
-      <p style="font-size:16px;color:#cfcfcf;margin-top:10px;">
-        I have always loved the feeling of good, high‑quality service, and that is exactly what I want to deliver to every customer who trusts me with their vehicle.
-      </p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <section>
-    <div class="card" style="text-align:center;">
-      <p style="font-size:14px;color:#9f9f9f;">© Papineau Car Detailing — Winnipeg, Manitoba</p>
-
-      <p style="font-size:14px;color:#bfbfbf;margin-top:6px;">
-        Email:
-        <a href="mailto:benpapineauwpg@gmail.com" style="color:#dcdcff;text-decoration:none;">
-          benpapineauwpg@gmail.com
-        </a>
-      </p>
-
-      <p style="font-size:14px;color:#bfbfbf;margin-top:4px;">
-        Phone:
-        <a href="tel:2045099595" style="color:#dcdcff;text-decoration:none;">
-          (204) 509‑9595
-        </a>
-      </p>
-
-      <p style="font-size:13px;color:#7a7a7a;margin-top:10px;">
-        Website built by Ben Papineau
-      </p>
-
-      <a href="#top" class="back-to-top">Back to Top</a>
-    </div>
-  </section>
+    <a href="#top" class="back-to-top">Back to Top</a>
+  </div>
+</section>
 
 </main>
 <!-- BOOKING POPUP -->

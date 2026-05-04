@@ -1,665 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Paps & Co Car Detailing</title>
+    <meta charset="UTF-8">
+    <title>Paps & Co Detailing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-/* ===== GLOBAL ===== */
-body {
-    font-family: "Inter", sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #0b0b0b;
-    color: #dcdcdc;
-    line-height: 1.7;
-}
+    <style>
+        :root {
+            --bg-main: #050507;
+            --bg-card: #101015;
+            --bg-elevated: #15151c;
+            --accent: #7b5cff;
+            --accent-soft: rgba(123, 92, 255, 0.25);
+            --text-main: #f5f5f5;
+            --text-muted: #bfbfbf;
+            --border-subtle: #1a1a1f;
+        }
 
-/* ===== SIDE BANNERS ===== */
-.side-banner {
-    position: fixed;
-    top: 0;
-    width: 200px;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.18;
-    filter: blur(3px);
-    z-index: -1;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-.left-banner {
-    left: 0;
-    background-image: url('https://github.com/BPaps/paps-co-car-detailing/blob/main/OIP.webp?raw=true');
-}
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #151520 0, #050507 55%, #000000 100%);
+            color: var(--text-main);
+        }
 
-.right-banner {
-    right: 0;
-    background-image: url('https://github.com/BPaps/paps-co-car-detailing/blob/main/wp9857341.jpg?raw=true');
-}
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 16px 60px;
+        }
 
-@media (max-width: 900px) {
-    .side-banner {
-        display: none;
-    }
-}
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.03em;
+        }
 
-/* ===== HEADER ===== */
-header {
-    text-align: center;
-    padding: 80px 20px;
-    background: #0b0b0b;
-    border-bottom: 1px solid #1a1a1a;
-}
+        h1 {
+            font-size: 32px;
+            margin: 0 0 8px 0;
+        }
 
-header h1 {
-    margin: 0;
-    font-size: 42px;
-    letter-spacing: 2px;
-    font-family: "Cinzel", serif;
-    color: #e5e5e5;
-}
+        h2 {
+            font-size: 24px;
+            margin: 0 0 16px 0;
+        }
 
-header p {
-    margin-top: 15px;
-    font-size: 20px;
-    color: #b5b5b5;
-    font-style: italic;
-}
+        p {
+            margin: 0;
+        }
 
-/* ===== SECTIONS ===== */
-section {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
+        section {
+            margin-bottom: 32px;
+        }
 
-h2 {
-    font-family: "Cinzel", serif;
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #e5e5e5;
-    border-bottom: 1px solid #1a1a1a;
-    padding-bottom: 8px;
-    box-shadow: 0 2px 0 #66023C22;
-}
+        .card {
+            background: radial-gradient(circle at top left, #1b1b27 0, #101015 55%, #08080c 100%);
+            border-radius: 14px;
+            padding: 18px 18px 20px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+        }
 
-/* ===== CARDS ===== */
-.card {
-    background: #111111;
-    padding: 25px;
-    border-radius: 10px;
-    border: 1px solid #1a1a1a;
-    box-shadow: 0 0 12px rgba(0,0,0,0.4);
-    margin-bottom: 25px;
-}
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            margin: 14px 0;
+        }
 
-/* ===== SERVICE DROPDOWNS ===== */
-.service-item {
-    border-bottom: 1px solid #1a1a1a;
-    padding: 12px 0;
-}
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
 
-.service-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-family: "Cinzel", serif;
-    font-size: 20px;
-    color: #e5e5e5;
-}
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: var(--accent);
+        }
 
-.service-header:hover span:first-child {
-    color: #66023C;
-}
+        .price {
+            font-weight: 600;
+            color: #f8f4ff;
+        }
 
-.service-body {
-    display: none;
-    margin-top: 8px;
-    font-size: 15px;
-    color: #cfcfcf;
-}
+        .info-icon {
+            font-size: 14px;
+            margin-left: 6px;
+            cursor: pointer;
+            color: var(--accent);
+        }
 
-.service-body.open {
-    display: block;
-}
+        .book-btn {
+            background: linear-gradient(135deg, #222222, #2c2c35);
+            color: #f5f5f5;
+            border-radius: 6px;
+            border: 1px solid #2b2b35;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 10px 20px;
+            transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+        }
 
-/* ===== ADD‑ON DROPDOWNS ===== */
-.addon-item {
-    margin-bottom: 10px;
-}
+        .book-btn:hover {
+            background: linear-gradient(135deg, #2b2b35, #353545);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+        }
 
-.addon-desc {
-    display: none;
-    margin-top: 6px;
-    font-size: 14px;
-    color: #cfcfcf;
-    padding-left: 5px;
-    border-left: 2px solid #66023C33;
-    animation: fadeIn 0.25s ease;
-}
+        .addon-item {
+            margin-bottom: 6px;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        .addon-item label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-/* ===== FORM ELEMENTS ===== */
-label {
-    display: block;
-    margin: 8px 0;
-    cursor: pointer;
-    font-size: 16px;
-}
+        .addon-item span {
+            color: var(--text-main);
+        }
 
-label:hover {
-    color: #66023C;
-}
+        .addon-item span:hover {
+            color: #e0ddff;
+        }
 
-input[type="radio"],
-input[type="checkbox"] {
-    margin-right: 10px;
-}
+        .addon-desc {
+            display: none;
+            margin-top: 4px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
 
-input[type="checkbox"]:focus,
-input[type="radio"]:focus {
-    outline: 2px solid #66023C;
-}
+        .addon-desc.visible {
+            display: block;
+        }
 
-.addon-disabled {
-    opacity: 0.4;
-    pointer-events: none;
-}
+        /* Booking popup */
+        .booking-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
 
-/* ===== INFO ICON ===== */
-.info-icon {
-    font-size: 16px;
-    margin-left: 8px;
-    cursor: pointer;
-    color: #b5b5b5;
-    transition: color 0.2s ease;
-}
+        .booking-popup.visible {
+            display: flex;
+        }
 
-.info-icon:hover {
-    color: #66023C;
-}
+        .booking-content {
+            background: radial-gradient(circle at top left, #1b1b27 0, #101015 55%, #08080c 100%);
+            border-radius: 14px;
+            padding: 20px 20px 18px;
+            border: 1px solid var(--border-subtle);
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+        }
 
-/* ===== POPUPS ===== */
-.info-popup,
-.booking-popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
+        .booking-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
 
-.info-popup.visible,
-.booking-popup.visible {
-    display: flex;
-}
+        .booking-link {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #222;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 15px;
+            border: 1px solid #2b2b35;
+            transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+        }
 
-.info-content,
-.booking-content {
-    background: #141414;
-    border-radius: 12px;
-    padding: 25px 30px;
-    max-width: 520px;
-    width: 90%;
-    border: 1px solid #66023C33;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
-}
+        .booking-link:hover {
+            background: #2c2c35;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+            transform: translateY(-1px);
+        }
 
-.info-content h4,
-.booking-content h3 {
-    margin-top: 0;
-    font-family: "Cinzel", serif;
-    color: #f0f0f0;
-}
+        .info-close-btn {
+            background: transparent;
+            border-radius: 6px;
+            border: 1px solid #33333d;
+            color: #dcdcdc;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+        }
 
-.info-close-btn {
-    background: #e5e5e5;
-    color: #111111;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-}
+        .info-close-btn:hover {
+            background: #22222b;
+            border-color: #444457;
+            color: #ffffff;
+        }
 
-/* ===== CONTACT ===== */
-.contact {
-    width: 100%;
-    max-width: 700px;
-    text-align: center;
-    margin: 80px auto;
-    padding: 40px 20px;
-    border-top: 1px solid #1a1a1a;
-}
+        /* Side banners */
+        .side-banner {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 120px;
+            z-index: 900;
+        }
 
-.contact h2,
-.contact p {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    color: #c2c2c2;
-    font-size: 18px;
-}
+        .side-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-/* ===== FOOTER ===== */
-footer {
-    text-align:center;
-    padding:40px 20px;
-    border-top:1px solid #1a1a1a;
-    margin-top:60px;
-    color:#b5b5b5;
-    font-family:'Cinzel', serif;
-    font-size:16px;
-}
-footer a {
-    display:block;
-    margin-bottom:20px;
-    color:#b5b5b5;
-    text-decoration:none;
-    font-size:15px;
-    letter-spacing:1px;
-}
-</style>
+        .side-banner.left {
+            left: 10px;
+        }
+
+        .side-banner.right {
+            right: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .side-banner {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            main {
+                padding: 28px 14px 40px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .booking-content {
+                margin: 0 16px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="side-banner left-banner"></div>
-<div class="side-banner right-banner"></div>
-
-<header>
-    <h1>Paps & Co Car Detailing</h1>
-    <p>Detailing Done Right.</p>
-</header>
-
-<!-- ===== SERVICES ===== -->
-<section>
-    <h2>Services</h2>
-
-    <div class="card">
-
-        <!-- Exterior -->
-        <div class="service-item">
-            <div class="service-header" onclick="toggleService('ext')">
-                <span>Exterior Detail</span>
-                <span>▼</span>
-            </div>
-            <div id="service-ext" class="service-body">
-                An exterior detail begins with a gentle hand wash that safely removes dirt and road buildup while keeping the paint in great condition. After the wash, the tires are cleaned and refreshed, the exterior glass is polished for clear visibility, and the vehicle is carefully dried to prevent streaks or water spots. The service finishes with a full walk‑around inspection to make sure the exterior looks clean, even, and well‑presented from every angle.
-            </div>
-        </div>
-
-        <!-- Interior -->
-        <div class="service-item">
-            <div class="service-header" onclick="toggleService('int')">
-                <span>Interior Detail</span>
-                <span>▼</span>
-            </div>
-            <div id="service-int" class="service-body">
-                An interior detail starts with a deep vacuum of the seats, carpets, mats, and trunk area to remove dirt and debris from both open and hard‑to‑reach spots. Carpets and upholstery are then shampooed and treated to lift stains and refresh the fabric, helping the interior look and feel noticeably cleaner. All plastic, vinyl, and leather surfaces are gently cleaned and conditioned to restore a smooth, natural finish, while vents and tight areas are brushed and air‑blown to clear out hidden dust. The windows are polished to a streak‑free shine, and the service wraps up with an odor neutralizer to leave the cabin smelling clean and fresh.
-            </div>
-        </div>
-
-        <!-- Full Detail -->
-        <div class="service-item">
-            <div class="service-header" onclick="toggleService('full')">
-                <span>Full Detail</span>
-                <span>▼</span>
-            </div>
-            <div id="service-full" class="service-body">
-                A full detail brings together both the interior and exterior services to give the entire vehicle a refreshed, well‑cared‑for look. The exterior receives a gentle hand wash to remove dirt and buildup while keeping the paint safe, and the vehicle is carefully dried to prevent streaks or water spots. Inside, the cabin is renewed through deep vacuuming, stain‑lifting shampoo work, and the use of steam to clean and sanitize surfaces more thoroughly. All interior materials are cleaned and conditioned, the windows are polished for a clear finish, and the service wraps up with a full inspection to ensure the vehicle looks clean, balanced, and refreshed from top to bottom.
-            </div>
-        </div>
-
-        <!-- Refresh Package -->
-        <div class="service-item" style="border-top:1px solid #1a1a1a; border-bottom:none;">
-            <div class="service-header" onclick="toggleService('refresh')">
-                <span>Refresh Package</span>
-                <span>▼</span>
-            </div>
-            <div id="service-refresh" class="service-body">
-                The refresh package is the most in‑depth service available, designed to bring a vehicle as close to like‑new condition as possible. The interior receives a full restoration that includes deep extraction, stain removal, steam cleaning, and detailed attention to every surface, with the seats removed to allow for an even more thorough clean underneath and around hard‑to‑reach areas. The exterior is carefully washed, decontaminated, and polished for a clean, even finish, and the entire vehicle is inspected from top to bottom to ensure a consistent, refreshed look. This package includes every add‑on option by default and often takes the full day to complete due to the level of detail involved.
-            </div>
-        </div>
-
+    <!-- Side banners -->
+    <div class="side-banner left">
+        <img src="side-banner-left.png?raw=true" alt="Paps & Co Detailing">
+    </div>
+    <div class="side-banner right">
+        <img src="side-banner-right.png?raw=true" alt="Paps & Co Detailing">
     </div>
 
-</section>
-<!-- ===== BUILD YOUR DETAIL PACKAGE ===== -->
-<section>
-    <h2>Build Your Detail Package</h2>
-
-    <div class="card">
-
-        <!-- Base Service -->
-        <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; border-bottom:1px solid #1a1a1a; padding-bottom:6px;">
-            Package Builder
-        </h3>
-
-        <p style="font-size:15px; color:#bfbfbf; margin-top:10px;">
-            Choose your base service, vehicle size, and any add‑ons to get an estimated price.
-        </p>
-
-        <hr class="divider">
-
-        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Base Service</h4>
-        <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
-        <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
-        <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
-        <label><input type="radio" name="base" value="refresh" onclick="updateTotal()">Refresh Package</label>
-
-        <hr class="divider">
-
-        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Vehicle Size</h4>
-        <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
-        <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
-        <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
-
-        <hr class="divider">
-
-        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Add‑ons</h4>
-
-        <!-- Tire Shine -->
-        <div class="addon-item">
-            <label>
-                <input type="checkbox" id="tireShine" value="10" onclick="updateTotal(event)">
-                <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
-            </label>
-            <div id="addon-tire" class="addon-desc">
-                Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- Seat Removal -->
-        <div class="addon-item">
-            <label>
-                <input type="checkbox" value="40" onclick="updateTotal(event)">
-                <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $40</span>
-            </label>
-            <div id="addon-seat" class="addon-desc">
-                Seat removal allows for a much deeper interior clean by giving access to areas that normally can’t be reached. With the seats taken out, dirt, debris, and stains hidden underneath can be fully cleaned, leaving the interior noticeably fresher and more complete.
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- Headlight Restoration -->
-        <div class="addon-item">
-            <label>
-                <input type="checkbox" value="40" onclick="updateTotal(event)">
-                <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $40</span>
-            </label>
-            <div id="addon-headlight" class="addon-desc">
-                Headlight restoration removes the cloudy, yellowed layer that builds up over time and brings back a clear, bright finish. This improves both the look of the vehicle and nighttime visibility.
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- Engine Bay Cleaning -->
-        <div class="addon-item">
-            <label>
-                <input type="checkbox" id="engineBay" value="30" onclick="updateTotal(event)">
-                <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $30</span>
-            </label>
-            <div id="addon-engine" class="addon-desc">
-                Engine bay cleaning removes dust, grease, and buildup from the engine area using safe cleaning methods. The result is a cleaner, more presentable engine compartment that looks well‑maintained.
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <!-- Full Body Polishing -->
-        <div class="addon-item">
-            <label>
-                <input type="checkbox" value="50" onclick="updateTotal(event)">
-                <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $50</span>
-            </label>
-            <div id="addon-polish" class="addon-desc">
-                Full body polishing helps reduce the look of light scratches, swirl marks, and dullness in the paint. It brings back a smoother, glossier finish and makes the vehicle’s exterior look brighter and more refined.
-            </div>
-        </div>
-
-        <hr class="divider">
-
-        <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">
-            Total Estimated Price
-            <span class="info-icon" onclick="toggleInfo()">ⓘ</span>
-        </h4>
-
-        <p id="totalPrice" class="price" style="font-size:22px; margin:5px 0 10px 0;">$0</p>
-        <p id="summaryBox" style="margin-top:5px; color:#dcdcdc; font-size:16px;"></p>
-
-        <button class="book-btn" onclick="openBooking()" style="margin-top:10px; padding:10px 20px; border-radius:6px; border:none; background:#222; color:#f5f5f5; cursor:pointer;">
-            Book Now
-        </button>
-
-    </div>
-</section>
-
-<!-- ===== ABOUT & STORY SECTION ===== -->
-<section>
-    <h2>About & Story</h2>
-
-    <div style="display:flex; gap:25px; flex-wrap:wrap;">
-
-        <!-- ABOUT CARD -->
-        <div class="card" style="flex:1; min-width:280px;">
-            <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; color:#e5e5e5;">
-                About
-            </h3>
-            <p style="color:#cfcfcf; font-size:15px; line-height:1.7;">
-                Paps & Co Car Detailing is built on a simple idea — premium service should feel personal, honest, and carefully done. Every vehicle is treated with the same level of attention and respect, whether it’s a daily driver or something special. The goal is to deliver a clean that feels refreshing, balanced, and genuinely satisfying.
+    <main>
+        <!-- HERO / INTRO -->
+        <section>
+            <h1>Paps & Co Car Detailing</h1>
+            <p style="font-size:16px; color:#dcdcdc; max-width:640px; margin-top:6px;">
+                Premium automotive detailing in Winnipeg, Manitoba — focused on clean, sharp, and honest results. Build your package, see your price, and book the way that works best for you.
             </p>
-        </div>
+        </section>
 
-        <!-- STORY CARD -->
-        <div class="card" style="flex:1; min-width:280px;">
-            <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; color:#e5e5e5;">
-                Story
-            </h3>
-            <p style="color:#cfcfcf; font-size:15px; line-height:1.7;">
-                My name is Ben Papineau. I’m 20 years old, and I’ve always had a passion for cars — the look, the feel, the experience of taking care of them. I started Paps & Co because I’ve always appreciated the feeling of good premium service, the kind where you can tell someone genuinely cares about the work they’re doing. That’s the standard I bring to every detail: premium treatment, real effort, and results that feel worth it.
+        <!-- WHY CHOOSE US -->
+        <section>
+            <h2>Why Choose Paps & Co Detailing</h2>
+
+            <div class="card">
+                <p style="font-size:16px; color:#dcdcdc;">
+                    At Paps & Co, every vehicle is treated with the same care and attention we’d give our own. We focus on quality, consistency, and results that speak for themselves.
+                </p>
+
+                <ul style="margin-top:15px; color:#cfcfcf; line-height:1.6;">
+                    <li><strong>Premium Products Only</strong> — We use high‑quality cleaners, conditioners, and protectants for a longer‑lasting finish.</li>
+                    <li><strong>Attention to Detail</strong> — Every crack, crevice, and surface is cleaned with precision.</li>
+                    <li><strong>Transparent Pricing</strong> — No hidden fees. You see your estimated price before booking.</li>
+                    <li><strong>Flexible Scheduling</strong> — Evening and weekend availability to fit your life.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- BUILD YOUR DETAIL PACKAGE -->
+        <section>
+            <h2>Build Your Detail Package</h2>
+
+            <div class="card">
+
+                <!-- Base Service -->
+                <h3 style="margin-top:0; font-family:'Cinzel',serif; font-size:22px; border-bottom:1px solid #1a1a1a; padding-bottom:6px;">
+                    Package Builder
+                </h3>
+
+                <p style="font-size:15px; color:#bfbfbf; margin-top:10px;">
+                    Choose your base service, vehicle size, and any add‑ons to get an estimated price.
+                </p>
+
+                <hr class="divider">
+
+                <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Base Service</h4>
+                <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
+                <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
+                <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
+                <label><input type="radio" name="base" value="refresh" onclick="updateTotal()">Refresh Package</label>
+
+                <hr class="divider">
+
+                <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Vehicle Size</h4>
+                <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
+                <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
+                <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
+
+                <hr class="divider">
+
+                <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">Add‑ons</h4>
+
+                <!-- Tire Shine -->
+                <div class="addon-item">
+                    <label>
+                        <input type="checkbox" id="tireShine" value="10" onclick="updateTotal(event)">
+                        <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
+                    </label>
+                    <div id="addon-tire" class="addon-desc">
+                        Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Seat Removal -->
+                <div class="addon-item">
+                    <label>
+                        <input type="checkbox" value="40" onclick="updateTotal(event)">
+                        <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $40</span>
+                    </label>
+                    <div id="addon-seat" class="addon-desc">
+                        Seat removal allows for a much deeper interior clean by giving access to areas that normally can’t be reached. With the seats taken out, dirt, debris, and stains hidden underneath can be fully cleaned, leaving the interior noticeably fresher and more complete.
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Headlight Restoration -->
+                <div class="addon-item">
+                    <label>
+                        <input type="checkbox" value="40" onclick="updateTotal(event)">
+                        <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $40</span>
+                    </label>
+                    <div id="addon-headlight" class="addon-desc">
+                        Headlight restoration removes the cloudy, yellowed layer that builds up over time and brings back a clear, bright finish. This improves both the look of the vehicle and nighttime visibility.
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Engine Bay Cleaning -->
+                <div class="addon-item">
+                    <label>
+                        <input type="checkbox" id="engineBay" value="30" onclick="updateTotal(event)">
+                        <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $30</span>
+                    </label>
+                    <div id="addon-engine" class="addon-desc">
+                        Engine bay cleaning removes dust, grease, and buildup from the engine area using safe cleaning methods. The result is a cleaner, more presentable engine compartment that looks well‑maintained.
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Full Body Polishing -->
+                <div class="addon-item">
+                    <label>
+                        <input type="checkbox" value="50" onclick="updateTotal(event)">
+                        <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $50</span>
+                    </label>
+                    <div id="addon-polish" class="addon-desc">
+                        Full body polishing helps reduce the look of light scratches, swirl marks, and dullness in the paint. It brings back a smoother, glossier finish and makes the vehicle’s exterior look brighter and more refined.
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <h4 style="margin:0 0 8px 0; font-family:'Cinzel',serif; font-size:18px; color:#e5e5e5;">
+                    Total Estimated Price
+                    <span class="info-icon" onclick="toggleInfo()">ⓘ</span>
+                </h4>
+
+                <p id="totalPrice" class="price" style="font-size:22px; margin:5px 0 10px 0;">$0</p>
+                <p id="summaryBox" style="margin-top:5px; color:#dcdcdc; font-size:16px;"></p>
+
+                <button class="book-btn" onclick="openBooking()">
+                    Book Now
+                </button>
+            </div>
+        </section>
+
+        <!-- WHAT TO EXPECT -->
+        <section>
+            <h2>What to Expect</h2>
+
+            <div class="card">
+                <ul style="color:#dcdcdc; line-height:1.6;">
+                    <li><strong>Arrival & Walkthrough</strong> — We take a quick look at your vehicle and confirm the services you want.</li>
+                    <li><strong>Estimated Time</strong> — Most details take 1.5–4 hours depending on the package and vehicle size.</li>
+                    <li><strong>Personal Items</strong> — Please remove valuables and personal belongings before your appointment.</li>
+                    <li><strong>Payment</strong> — Cash, e‑transfer, or card accepted upon completion.</li>
+                    <li><strong>Satisfaction Guarantee</strong> — If something isn’t right, we fix it on the spot.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SERVICE AREA -->
+        <section>
+            <h2>Service Area</h2>
+
+            <div class="card">
+                <p style="font-size:16px; color:#dcdcdc;">
+                    Based in Winnipeg, Manitoba — proudly serving:
+                </p>
+
+                <ul style="color:#cfcfcf; line-height:1.6;">
+                    <li>St. James</li>
+                    <li>Charleswood</li>
+                    <li>Transcona</li>
+                    <li>East Kildonan</li>
+                    <li>West End</li>
+                    <li>Downtown Winnipeg</li>
+                    <li>Surrounding areas upon request</li>
+                </ul>
+
+                <div style="margin-top:20px; border-radius:8px; overflow:hidden;">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44928.76933833732!2d-97.20000000000002!3d49.89500000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea715b5f1b1c4f%3A0x4b0f0e0e0e0e0e0e!2sWinnipeg%2C%20MB!5e0!3m2!1sen!2sca!4v0000000000000"
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section>
+            <h2>Customer Reviews</h2>
+
+            <div class="card">
+                <p style="font-size:16px; color:#dcdcdc; margin-bottom:15px;">
+                    Here’s what customers are saying about Paps & Co:
+                </p>
+
+                <div style="margin-bottom:15px;">
+                    <p style="color:#e5e5e5;"><strong>“My car looked brand new. Amazing attention to detail.”</strong></p>
+                    <p style="color:#bfbfbf;">— Sarah M.</p>
+                </div>
+
+                <div style="margin-bottom:15px;">
+                    <p style="color:#e5e5e5;"><strong>“Fast, friendly, and the results were unreal. Highly recommend.”</strong></p>
+                    <p style="color:#bfbfbf;">— Jason R.</p>
+                </div>
+
+                <div>
+                    <p style="color:#e5e5e5;"><strong>“Best detailing experience I’ve had in Winnipeg.”</strong></p>
+                    <p style="color:#bfbfbf;">— Emily T.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <section>
+            <div class="card" style="text-align:center;">
+                <p style="font-size:14px; color:#9f9f9f;">
+                    © Paps & Co Car Detailing — Winnipeg, Manitoba
+                </p>
+                <p style="font-size:14px; color:#bfbfbf; margin-top:6px;">
+                    Email: <a href="mailto:benpapineauwpg@gmail.com" style="color:#dcdcff; text-decoration:none;">benpapineauwpg@gmail.com</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOOKING POPUP -->
+    <div id="bookingPopup" class="booking-popup">
+        <div class="booking-content">
+            <h3>Book Your Detail</h3>
+
+            <p style="font-size:16px; color:#cfcfcf; margin-bottom:20px;">
+                Choose how you'd like to book your appointment.
             </p>
+
+            <a href="mailto:benpapineauwpg@gmail.com" class="booking-link">
+                Email
+            </a>
+
+            <a href="tel:2045099595" class="booking-link">
+                Call
+            </a>
+
+            <a href="sms:2045099595" class="booking-link">
+                Text
+            </a>
+
+            <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">
+                Close
+            </button>
         </div>
-
     </div>
-</section>
 
-<!-- ===== INFO POPUP ===== -->
-<div id="infoPopup" class="info-popup">
-    <div class="info-content">
-        <h4>How your price is calculated</h4>
-        <ul>
-            <li><strong>1. Base price:</strong> Depends on the selected service and vehicle size.</li>
-            <li><strong>2. Add‑ons:</strong> Any selected add‑ons are added on top of the base price.</li>
-            <li><strong>3. Final total:</strong> Final price = Base price + add‑ons.</li>
-        </ul>
-        <button class="info-close-btn" onclick="toggleInfo()">Close</button>
-    </div>
-</div>
+    <script>
+        const basePrices = {
+            exterior: { small: 80, medium: 100, large: 120 },
+            interior: { small: 90, medium: 110, large: 130 },
+            full:     { small: 150, medium: 180, large: 210 },
+            refresh:  { small: 60,  medium: 75,  large: 90  }
+        };
 
-<!-- ===== BOOKING POPUP ===== -->
-<!-- ===== BOOKING POPUP ===== -->
-<div id="bookingPopup" class="booking-popup">
-    <div class="booking-content">
-        <h3>Book Your Detail</h3>
+        function updateTotal(event) {
+            let base = document.querySelector('input[name="base"]:checked');
+            let size = document.querySelector('input[name="size"]:checked');
 
-        <p style="font-size:16px; color:#cfcfcf; margin-bottom:20px;">
-            Choose how you'd like to book your appointment.
-        </p>
+            let total = 0;
+            let summaryParts = [];
 
-        <a href="mailto:benpapineauwpg@gmail.com" 
-           style="display:block; margin-bottom:12px; padding:10px; background:#222; color:#fff; text-align:center; border-radius:6px; text-decoration:none;">
-           Email
-        </a>
+            if (base && size) {
+                let baseKey = base.value;
+                let sizeKey = size.value;
+                total += basePrices[baseKey][sizeKey];
 
-        <a href="tel:2045099595" 
-           style="display:block; margin-bottom:12px; padding:10px; background:#222; color:#fff; text-align:center; border-radius:6px; text-decoration:none;">
-           Call
-        </a>
+                let baseLabel = {
+                    exterior: "Exterior Detail",
+                    interior: "Interior Detail",
+                    full: "Full Detail",
+                    refresh: "Refresh Package"
+                }[baseKey];
 
-        <a href="sms:2045099595" 
-           style="display:block; margin-bottom:12px; padding:10px; background:#222; color:#fff; text-align:center; border-radius:6px; text-decoration:none;">
-           Text
-        </a>
+                let sizeLabel = {
+                    small: "Small (Sedan/Coupe)",
+                    medium: "Medium (SUV/Crossover)",
+                    large: "Large (Truck/Minivan)"
+                }[sizeKey];
 
-        <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">
-            Close
-        </button>
-    </div>
-</div>
-
-<!-- ===== CONTACT ===== -->
-<section class="contact" id="contact">
-    <h2>Contact</h2>
-    <p>Email: benpapineauwpg@gmail.com</p>
-    <p>Phone: (204)-509-9595</p>
-    <p>Location: Winnipeg, Manitoba</p>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-    <a href="#top">Back to top ↑</a>
-    <p>Paps & Co Car Detailing — Winnipeg, Manitoba</p>
-    <p>Established 2023</p>
-</footer>
-<!-- ===== SCRIPT ===== -->
-<script>
-function toggleService(key) {
-    const el = document.getElementById("service-" + key);
-    el.classList.toggle("open");
-}
-
-function toggleInfo() {
-    const popup = document.getElementById("infoPopup");
-    popup.classList.toggle("visible");
-}
-
-function openBooking() {
-    const popup = document.getElementById("bookingPopup");
-    popup.classList.toggle("visible");
-}
-function toggleAddonDesc(id) {
-    const box = document.getElementById(id);
-    box.style.display = box.style.display === "block" ? "none" : "block";
-}
-
-function hideAllAddonDescs() {
-    const descs = document.querySelectorAll(".addon-desc");
-    descs.forEach(d => d.style.display = "none");
-}
-
-function updateTotal(e) {
-    const base = document.querySelector('input[name="base"]:checked');
-    const size = document.querySelector('input[name="size"]:checked');
-    const addonBoxes = document.querySelectorAll('input[type="checkbox"]');
-    const tireShine = document.getElementById("tireShine");
-    const engineBay = document.getElementById("engineBay");
-
-    if (!base || !size) {
-        document.getElementById("totalPrice").innerText = "$0";
-        document.getElementById("summaryBox").innerText = "";
-        return;
-    }
-
-    const basePrices = {
-        exterior: { small: 80,  medium: 100, large: 130 },
-        interior: { small: 165, medium: 200, large: 250 },
-        full:     { small: 300, medium: 350, large: 425 },
-        refresh:  { small: 500, medium: 550, large: 600 }
-    };
-
-    let total = basePrices[base.value][size.value];
-
-    // Handle add-ons based on base service
-    if (base.value === "refresh") {
-        // Refresh: includes all add-ons by default, but they are not selectable
-        addonBoxes.forEach(box => {
-            box.checked = false;
-            box.disabled = true;
-            box.parentElement.classList.add("addon-disabled");
-        });
-        hideAllAddonDescs();
-    } else {
-        // Re-enable all add-ons first
-        addonBoxes.forEach(box => {
-            box.disabled = false;
-            box.parentElement.classList.remove("addon-disabled");
-        });
-
-        // Exterior: tire shine included by default, so disable that add-on + hide its description
-        if (base.value === "exterior") {
-            if (tireShine) {
-                tireShine.checked = false;
-                tireShine.disabled = true;
-                tireShine.parentElement.classList.add("addon-disabled");
-                const tireDesc = document.getElementById("addon-tire");
-                if (tireDesc) tireDesc.style.display = "none";
+                summaryParts.push(baseLabel + " — " + sizeLabel);
             }
-        }
 
-        // Full Detail: disable Tire Shine + Engine Bay Cleaning
-        if (base.value === "full") {
-            if (tireShine) {
-                tireShine.checked = false;
-                tireShine.disabled = true;
-                tireShine.parentElement.classList.add("addon-disabled");
-                const tireDesc = document.getElementById("addon-tire");
-                if (tireDesc) tireDesc.style.display = "none";
-            }
-            if (engineBay) {
-                engineBay.checked = false;
-                engineBay.disabled = true;
-                engineBay.parentElement.classList.add("addon-disabled");
-                const engineDesc = document.getElementById("addon-engine");
-                if (engineDesc) engineDesc.style.display = "none";
-            }
-        }
+            const addonCheckboxes = document.querySelectorAll('.addon-item input[type="checkbox"]');
+            let addonLabels = [];
 
-        // Add selected add-ons to total
-        const checkedAddons = document.querySelectorAll('input[type="checkbox"]:checked');
-        checkedAddons.forEach(a => {
-            total += parseInt(a.value);
-        });
-    }
-
-    // Build summary text
-    let summary = "Selected: " 
-        + base.value.charAt(0).toUpperCase() + base.value.slice(1)
-        + " — " + size.value.charAt(0).toUpperCase() + size.value.slice(1);
-
-    if (base.value === "refresh") {
-        summary += " (includes all add-ons)";
-    } else {
-        const checkedAddons = document.querySelectorAll('input[type="checkbox"]:checked');
-        if (checkedAddons.length > 0) {
-            let addonNames = [];
-            checkedAddons.forEach(a => {
-                addonNames.push(a.parentElement.innerText.split("—")[0].trim());
+            addonCheckboxes.forEach(cb => {
+                if (cb.checked) {
+                    total += parseFloat(cb.value || 0);
+                    const span = cb.parentElement.querySelector('span');
+                    if (span) addonLabels.push(span.textContent.trim());
+                }
             });
-            summary += " + " + addonNames.join(", ");
+
+            if (addonLabels.length > 0) {
+                summaryParts.push("Add‑ons: " + addonLabels.join(", "));
+            }
+
+            document.getElementById("totalPrice").innerText = "$" + total.toString();
+            document.getElementById("summaryBox").innerText =
+                summaryParts.length > 0 ? summaryParts.join(" | ") : "No selections yet.";
         }
-    }
 
-    document.getElementById("totalPrice").innerText = "$" + Math.round(total);
-    document.getElementById("summaryBox").innerText = summary;
-}
-</script>
+        function toggleAddonDesc(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.classList.toggle("visible");
+        }
 
+        function toggleInfo() {
+            alert("This is an estimated price based on your selections. Final pricing may vary based on vehicle condition.");
+        }
+
+        function openBooking() {
+            const popup = document.getElementById("bookingPopup");
+            popup.classList.toggle("visible");
+        }
+    </script>
 </body>
 </html>

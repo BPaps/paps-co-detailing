@@ -1,0 +1,515 @@
+html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-main:#050507;
+      --bg-card:#0d0d12;
+      --accent:#7b5cff;
+      --text-main:#f5f5f5;
+      --text-muted:#bfbfbf;
+      --border-subtle:#1a1a22;
+      --accent-soft:rgba(123,92,255,0.35);
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:#050507;
+      color:var(--text-main);
+    }
+
+    /* SUBTLE PURPLE BACKGROUND GLOW */
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      background:radial-gradient(
+        circle at center,
+        rgba(123,92,255,0.12),
+        rgba(5,5,7,1)
+      );
+      z-index:-20;
+    }
+
+    main {
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 16px 60px;
+    }
+
+    h1,h2,h3,h4 {
+      font-family:'Cinzel',serif;
+      letter-spacing:.03em;
+    }
+
+    h1 {
+      font-size:32px;
+      margin:0 0 8px;
+    }
+
+    h2 {
+      font-size:24px;
+      margin:0 0 16px;
+    }
+
+    section {
+      margin-bottom:32px;
+    }
+
+    /* SHARP CARDS */
+    .card {
+      background:#0d0d12;
+      border-radius:6px;
+      padding:18px 18px 20px;
+      border:1px solid var(--border-subtle);
+      box-shadow:0 6px 16px rgba(0,0,0,0.45);
+    }
+
+    .divider {
+      border:none;
+      border-top:1px solid var(--border-subtle);
+      margin:14px 0;
+    }
+
+    label {
+      display:block;
+      margin-bottom:6px;
+      font-size:15px;
+      color:var(--text-muted);
+      cursor:pointer;
+    }
+
+    input[type=radio],
+    input[type=checkbox] {
+      margin-right:8px;
+      accent-color:var(--accent);
+    }
+
+    .price {
+      font-weight:600;
+      color:#f8f4ff;
+    }
+
+    /* NEW SHARP INFO ICON */
+    .info-icon {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      border:1px solid var(--accent);
+      color:var(--accent);
+      font-size:12px;
+      cursor:pointer;
+      margin-left:6px;
+      transition:background .2s, color .2s;
+    }
+
+    .info-icon:hover {
+      background:var(--accent);
+      color:#fff;
+    }
+
+    /* BUTTONS */
+    .book-btn {
+      background:#1a1a1f;
+      color:#f5f5f5;
+      border-radius:4px;
+      border:1px solid #2b2b35;
+      cursor:pointer;
+      font-size:15px;
+      padding:10px 20px;
+      transition:background .18s, transform .12s, box-shadow .18s;
+    }
+
+    .book-btn:hover {
+      background:#23232a;
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.45);
+    }
+
+    .addon-item {
+      margin-bottom:6px;
+    }
+
+    .addon-item label {
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .addon-item span {
+      color:var(--text-main);
+    }
+
+    .addon-item span:hover {
+      color:#e0ddff;
+    }
+
+    .addon-desc {
+      display:none;
+      margin-top:4px;
+      font-size:14px;
+      color:var(--text-muted);
+      line-height:1.5;
+    }
+
+    .addon-desc.visible {
+      display:block;
+    }
+
+    /* DISABLED ADD-ON STYLE */
+    .disabled-addon {
+      opacity:0.35;
+      pointer-events:none;
+    }
+
+    /* SIDE BANNERS — SHARPER */
+    .side-banner {
+      position:fixed;
+      top:0;
+      width:180px;
+      height:100vh;
+      overflow:hidden;
+      opacity:.12;
+      filter:blur(3px);
+      z-index:-10;
+      pointer-events:none;
+    }
+
+    .side-banner img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.1);
+    }
+
+    .left-banner {
+      left:0;
+    }
+
+    .right-banner {
+      right:0;
+    }
+
+    @media(max-width:1200px){
+      .side-banner {
+        display:none;
+      }
+    }
+
+    /* POPUPS — SHARP */
+    dialog.booking-popup, dialog#priceInfoPopup {
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin: auto;
+      overflow: visible;
+    }
+
+    dialog.booking-popup[open], dialog#priceInfoPopup[open] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    dialog.booking-popup::backdrop, dialog#priceInfoPopup::backdrop {
+      background: rgba(0,0,0,.78);
+      backdrop-filter: blur(2px);
+    }
+
+    .booking-content {
+      background:#0d0d12;
+      border-radius:6px;
+      padding:20px;
+      width:100%;
+      max-width:380px;
+      border:1px solid var(--border-subtle);
+      box-shadow:0 8px 20px rgba(0,0,0,0.55);
+    }
+
+    .booking-link {
+      display:block;
+      margin-bottom:10px;
+      padding:10px;
+      background:#1a1a1f;
+      color:#fff;
+      text-align:center;
+      border-radius:4px;
+      text-decoration:none;
+      font-size:15px;
+      border:1px solid #2b2b35;
+      transition:background .18s, transform .12s, box-shadow .18s;
+    }
+
+    .booking-link:hover {
+      background:#23232a;
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.45);
+    }
+
+    .info-close-btn {
+      background:#111;
+      border-radius:4px;
+      border:1px solid #33333d;
+      color:#dcdcdc;
+      padding:8px 14px;
+      cursor:pointer;
+      font-size:14px;
+      transition:background .18s, color .18s, border-color .18s;
+    }
+
+    .info-close-btn:hover {
+      background:#1c1c22;
+      border-color:#444457;
+      color:#fff;
+    }
+
+    /* PRICE INFO POPUP */
+
+    .price-info-box {
+      background:#0d0d12;
+      border-radius:6px;
+      padding:24px 26px;
+      width:100%;
+      max-width:420px;
+      border:1px solid var(--border-subtle);
+      box-shadow:0 8px 20px rgba(0,0,0,0.55);
+    }
+
+    .price-info-box h3 {
+      margin-top:0;
+      font-size:22px;
+      color:#f5f5ff;
+      text-align:center;
+    }
+
+    .price-info-section {
+      margin-top:18px;
+    }
+
+    .price-info-section h4 {
+      font-size:16px;
+      color:#dcdcff;
+      margin-bottom:6px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .price-info-section p,
+    .price-info-section li {
+      color:#cfcfcf;
+      font-size:15px;
+      line-height:1.55;
+    }
+
+    .price-info-divider {
+      border:none;
+      border-top:1px solid #2a2a33;
+      margin:14px 0;
+    }
+
+    /* BACK TO TOP */
+    .back-to-top {
+      display:block;
+      margin-top:20px;
+      font-size:14px;
+      color:#dcdcff;
+      text-decoration:none;
+      letter-spacing:0.5px;
+      transition:color .2s ease;
+    }
+
+    .back-to-top:hover {
+      color:#ffffff;
+    }
+
+    /* COMPARISON TABLE */
+    .comparison-section-title {
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .badge {
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      border:1px solid var(--accent-soft);
+      color:#e4e0ff;
+      background:rgba(10,10,20,0.9);
+    }
+
+    .comparison-table-wrapper {
+      overflow-x:auto;
+      margin-top:10px;
+    }
+
+    table.comparison-table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+      color:#dcdcdc;
+      background:linear-gradient(135deg,#050507,#090910);
+      border-radius:6px;
+      overflow:hidden;
+      border:1px solid #1a1a22;
+    }
+
+    table.comparison-table th,
+    table.comparison-table td {
+      padding:10px 10px;
+      border-bottom:1px solid #1a1a22;
+      text-align:center;
+      vertical-align:middle;
+    }
+
+    table.comparison-table th:first-child,
+    table.comparison-table td:first-child {
+      text-align:left;
+      font-weight:500;
+      color:#f5f5f5;
+      background:rgba(10,10,18,0.9);
+    }
+
+    table.comparison-table th {
+      background:rgba(15,15,25,0.95);
+      font-weight:600;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+    }
+
+    table.comparison-table tr:nth-child(even) td:not(:first-child) {
+      background:rgba(12,12,18,0.9);
+    }
+
+    table.comparison-table tr:nth-child(odd) td:not(:first-child) {
+      background:rgba(8,8,14,0.9);
+    }
+
+    table.comparison-table tr:hover td {
+      background:rgba(20,20,32,0.95);
+    }
+
+    .check-mark {
+      color:#9cffc7;
+      font-weight:600;
+    }
+
+    .dash-mark {
+      color:#666a75;
+    }
+
+    .table-note {
+      font-size:13px;
+      color:#9f9f9f;
+      margin-top:10px;
+    }
+
+    .pill-highlight {
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      border:1px solid rgba(255,255,255,0.12);
+      color:#f5f5f5;
+      background:rgba(255,255,255,0.03);
+    }
+
+    .pill-best-value {
+      border-color:rgba(156,255,199,0.4);
+      color:#c9ffe2;
+      background:rgba(0,80,40,0.25);
+    }
+
+    .pill-premium {
+      border-color:rgba(123,92,255,0.6);
+      color:#e4ddff;
+      background:rgba(40,20,90,0.4);
+    }
+
+    /* SHIELD LOGO */
+    .top-right-logo {
+      position:fixed;
+      top:20px;
+      right:20px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      z-index:3000;
+    }
+
+    .shield-logo {
+      width:54px;
+      height:64px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shield-logo::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(145deg,#1a1a22,#0d0d12);
+      border-radius:6px 6px 10px 10px;
+      clip-path:polygon(
+        50% 0%,
+        90% 20%,
+        90% 70%,
+        50% 100%,
+        10% 70%,
+        10% 20%
+      );
+      border:2px solid var(--accent);
+      box-shadow:
+        0 0 12px rgba(123,92,255,0.45),
+        inset 0 0 10px rgba(123,92,255,0.25);
+    }
+
+    .shield-inner {
+      position:absolute;
+      inset:6px;
+      background:rgba(10,10,20,0.7);
+      border-radius:4px 4px 8px 8px;
+      clip-path:polygon(
+        50% 0%,
+        88% 22%,
+        88% 68%,
+        50% 96%,
+        12% 68%,
+        12% 22%
+      );
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shield-letter {
+      font-family:'Cinzel',serif;
+      font-size:28px;
+      font-weight:600;
+      color:var(--accent);
+      text-shadow:0 0 8px rgba(123,92,255,0.6);
+    }
+
+    .logo-text {
+      font-family:'Cinzel',serif;
+      font-size:16px;
+      color:#e6e6e6;
+      text-shadow:0 0 6px rgba(123,92,255,0.4);
+    }

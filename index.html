@@ -6,531 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    :root {
-      --bg-main:#050507;
-      --bg-card:#0d0d12;
-      --accent:#7b5cff;
-      --text-main:#f5f5f5;
-      --text-muted:#bfbfbf;
-      --border-subtle:#1a1a22;
-      --accent-soft:rgba(123,92,255,0.35);
-    }
-
-    * {
-      box-sizing:border-box;
-    }
-
-    body {
-      margin:0;
-      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:#050507;
-      color:var(--text-main);
-    }
-
-    /* SUBTLE PURPLE BACKGROUND GLOW */
-    body::before {
-      content:"";
-      position:fixed;
-      inset:0;
-      background:radial-gradient(
-        circle at center,
-        rgba(123,92,255,0.12),
-        rgba(5,5,7,1)
-      );
-      z-index:-20;
-    }
-
-    main {
-      max-width:1100px;
-      margin:0 auto;
-      padding:40px 16px 60px;
-    }
-
-    h1,h2,h3,h4 {
-      font-family:'Cinzel',serif;
-      letter-spacing:.03em;
-    }
-
-    h1 {
-      font-size:32px;
-      margin:0 0 8px;
-    }
-
-    h2 {
-      font-size:24px;
-      margin:0 0 16px;
-    }
-
-    section {
-      margin-bottom:32px;
-    }
-
-    /* SHARP CARDS */
-    .card {
-      background:#0d0d12;
-      border-radius:6px;
-      padding:18px 18px 20px;
-      border:1px solid var(--border-subtle);
-      box-shadow:0 6px 16px rgba(0,0,0,0.45);
-    }
-
-    .divider {
-      border:none;
-      border-top:1px solid var(--border-subtle);
-      margin:14px 0;
-    }
-
-    label {
-      display:block;
-      margin-bottom:6px;
-      font-size:15px;
-      color:var(--text-muted);
-      cursor:pointer;
-    }
-
-    input[type=radio],
-    input[type=checkbox] {
-      margin-right:8px;
-      accent-color:var(--accent);
-    }
-
-    .price {
-      font-weight:600;
-      color:#f8f4ff;
-    }
-
-    /* NEW SHARP INFO ICON */
-    .info-icon {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      border:1px solid var(--accent);
-      color:var(--accent);
-      font-size:12px;
-      cursor:pointer;
-      margin-left:6px;
-      transition:background .2s, color .2s;
-    }
-
-    .info-icon:hover {
-      background:var(--accent);
-      color:#fff;
-    }
-
-    /* BUTTONS */
-    .book-btn {
-      background:#1a1a1f;
-      color:#f5f5f5;
-      border-radius:4px;
-      border:1px solid #2b2b35;
-      cursor:pointer;
-      font-size:15px;
-      padding:10px 20px;
-      transition:background .18s, transform .12s, box-shadow .18s;
-    }
-
-    .book-btn:hover {
-      background:#23232a;
-      transform:translateY(-1px);
-      box-shadow:0 4px 12px rgba(0,0,0,0.45);
-    }
-
-    .addon-item {
-      margin-bottom:6px;
-    }
-
-    .addon-item label {
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .addon-item span {
-      color:var(--text-main);
-    }
-
-    .addon-item span:hover {
-      color:#e0ddff;
-    }
-
-    .addon-desc {
-      display:none;
-      margin-top:4px;
-      font-size:14px;
-      color:var(--text-muted);
-      line-height:1.5;
-    }
-
-    .addon-desc.visible {
-      display:block;
-    }
-
-    /* DISABLED ADD-ON STYLE */
-    .disabled-addon {
-      opacity:0.35;
-      pointer-events:none;
-    }
-
-    /* SIDE BANNERS — SHARPER */
-    .side-banner {
-      position:fixed;
-      top:0;
-      width:180px;
-      height:100vh;
-      overflow:hidden;
-      opacity:.12;
-      filter:blur(3px);
-      z-index:-10;
-      pointer-events:none;
-    }
-
-    .side-banner img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      transform:scale(1.1);
-    }
-
-    .left-banner {
-      left:0;
-    }
-
-    .right-banner {
-      right:0;
-    }
-
-    @media(max-width:1200px){
-      .side-banner {
-        display:none;
-      }
-    }
-
-    /* POPUPS — SHARP */
-    .booking-popup {
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.78);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:1000;
-    }
-
-    .booking-popup.visible {
-      display:flex;
-    }
-
-    .booking-content {
-      background:#0d0d12;
-      border-radius:6px;
-      padding:20px;
-      width:100%;
-      max-width:380px;
-      border:1px solid var(--border-subtle);
-      box-shadow:0 8px 20px rgba(0,0,0,0.55);
-    }
-
-    .booking-link {
-      display:block;
-      margin-bottom:10px;
-      padding:10px;
-      background:#1a1a1f;
-      color:#fff;
-      text-align:center;
-      border-radius:4px;
-      text-decoration:none;
-      font-size:15px;
-      border:1px solid #2b2b35;
-      transition:background .18s, transform .12s, box-shadow .18s;
-    }
-
-    .booking-link:hover {
-      background:#23232a;
-      transform:translateY(-1px);
-      box-shadow:0 4px 12px rgba(0,0,0,0.45);
-    }
-
-    .info-close-btn {
-      background:#111;
-      border-radius:4px;
-      border:1px solid #33333d;
-      color:#dcdcdc;
-      padding:8px 14px;
-      cursor:pointer;
-      font-size:14px;
-      transition:background .18s, color .18s, border-color .18s;
-    }
-
-    .info-close-btn:hover {
-      background:#1c1c22;
-      border-color:#444457;
-      color:#fff;
-    }
-
-    /* PRICE INFO POPUP */
-    #priceInfoPopup {
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.78);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:2000;
-    }
-
-    #priceInfoPopup.visible {
-      display:flex;
-    }
-
-    .price-info-box {
-      background:#0d0d12;
-      border-radius:6px;
-      padding:24px 26px;
-      width:100%;
-      max-width:420px;
-      border:1px solid var(--border-subtle);
-      box-shadow:0 8px 20px rgba(0,0,0,0.55);
-    }
-
-    .price-info-box h3 {
-      margin-top:0;
-      font-size:22px;
-      color:#f5f5ff;
-      text-align:center;
-    }
-
-    .price-info-section {
-      margin-top:18px;
-    }
-
-    .price-info-section h4 {
-      font-size:16px;
-      color:#dcdcff;
-      margin-bottom:6px;
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .price-info-section p,
-    .price-info-section li {
-      color:#cfcfcf;
-      font-size:15px;
-      line-height:1.55;
-    }
-
-    .price-info-divider {
-      border:none;
-      border-top:1px solid #2a2a33;
-      margin:14px 0;
-    }
-
-    /* BACK TO TOP */
-    .back-to-top {
-      display:block;
-      margin-top:20px;
-      font-size:14px;
-      color:#dcdcff;
-      text-decoration:none;
-      letter-spacing:0.5px;
-      transition:color .2s ease;
-    }
-
-    .back-to-top:hover {
-      color:#ffffff;
-    }
-
-    /* COMPARISON TABLE */
-    .comparison-section-title {
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-
-    .badge {
-      display:inline-block;
-      padding:2px 8px;
-      border-radius:999px;
-      font-size:11px;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
-      border:1px solid var(--accent-soft);
-      color:#e4e0ff;
-      background:rgba(10,10,20,0.9);
-    }
-
-    .comparison-table-wrapper {
-      overflow-x:auto;
-      margin-top:10px;
-    }
-
-    table.comparison-table {
-      width:100%;
-      border-collapse:collapse;
-      font-size:14px;
-      color:#dcdcdc;
-      background:linear-gradient(135deg,#050507,#090910);
-      border-radius:6px;
-      overflow:hidden;
-      border:1px solid #1a1a22;
-    }
-
-    table.comparison-table th,
-    table.comparison-table td {
-      padding:10px 10px;
-      border-bottom:1px solid #1a1a22;
-      text-align:center;
-      vertical-align:middle;
-    }
-
-    table.comparison-table th:first-child,
-    table.comparison-table td:first-child {
-      text-align:left;
-      font-weight:500;
-      color:#f5f5f5;
-      background:rgba(10,10,18,0.9);
-    }
-
-    table.comparison-table th {
-      background:rgba(15,15,25,0.95);
-      font-weight:600;
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:0.06em;
-    }
-
-    table.comparison-table tr:nth-child(even) td:not(:first-child) {
-      background:rgba(12,12,18,0.9);
-    }
-
-    table.comparison-table tr:nth-child(odd) td:not(:first-child) {
-      background:rgba(8,8,14,0.9);
-    }
-
-    table.comparison-table tr:hover td {
-      background:rgba(20,20,32,0.95);
-    }
-
-    .check-mark {
-      color:#9cffc7;
-      font-weight:600;
-    }
-
-    .dash-mark {
-      color:#666a75;
-    }
-
-    .table-note {
-      font-size:13px;
-      color:#9f9f9f;
-      margin-top:10px;
-    }
-
-    .pill-highlight {
-      display:inline-block;
-      padding:2px 8px;
-      border-radius:999px;
-      font-size:11px;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
-      border:1px solid rgba(255,255,255,0.12);
-      color:#f5f5f5;
-      background:rgba(255,255,255,0.03);
-    }
-
-    .pill-best-value {
-      border-color:rgba(156,255,199,0.4);
-      color:#c9ffe2;
-      background:rgba(0,80,40,0.25);
-    }
-
-    .pill-premium {
-      border-color:rgba(123,92,255,0.6);
-      color:#e4ddff;
-      background:rgba(40,20,90,0.4);
-    }
-
-    /* SHIELD LOGO */
-    .top-right-logo {
-      position:fixed;
-      top:20px;
-      right:20px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      z-index:3000;
-    }
-
-    .shield-logo {
-      width:54px;
-      height:64px;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .shield-logo::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(145deg,#1a1a22,#0d0d12);
-      border-radius:6px 6px 10px 10px;
-      clip-path:polygon(
-        50% 0%,
-        90% 20%,
-        90% 70%,
-        50% 100%,
-        10% 70%,
-        10% 20%
-      );
-      border:2px solid var(--accent);
-      box-shadow:
-        0 0 12px rgba(123,92,255,0.45),
-        inset 0 0 10px rgba(123,92,255,0.25);
-    }
-
-    .shield-inner {
-      position:absolute;
-      inset:6px;
-      background:rgba(10,10,20,0.7);
-      border-radius:4px 4px 8px 8px;
-      clip-path:polygon(
-        50% 0%,
-        88% 22%,
-        88% 68%,
-        50% 96%,
-        12% 68%,
-        12% 22%
-      );
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .shield-letter {
-      font-family:'Cinzel',serif;
-      font-size:28px;
-      font-weight:600;
-      color:var(--accent);
-      text-shadow:0 0 8px rgba(123,92,255,0.6);
-    }
-
-    .logo-text {
-      font-family:'Cinzel',serif;
-      font-size:16px;
-      color:#e6e6e6;
-      text-shadow:0 0 6px rgba(123,92,255,0.4);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -546,11 +22,11 @@
 
 <!-- SIDE BANNERS -->
 <div class="side-banner left-banner">
-  <img src="https://github.com/BPaps/paps-co-car-detailing/blob/main/OIP.webp?raw=true">
+  <img src="images/OIP.webp" alt="Left Banner">
 </div>
 
 <div class="side-banner right-banner">
-  <img src="https://github.com/BPaps/paps-co-car-detailing/blob/main/wp9857341.jpg?raw=true">
+  <img src="images/wp9857341.jpg" alt="Right Banner">
 </div>
 
 <main>
@@ -560,16 +36,7 @@
 <section>
   <h1>Papineau Car Detailing</h1>
 
-  <p onclick="countSloganClick()" style="
-    font-size:20px;
-    color:#e6e6e6;
-    margin-top:4px;
-    font-family:'Cinzel',serif;
-    letter-spacing:0.5px;
-    cursor:pointer;
-    text-shadow:0 0 6px rgba(123,92,255,0.6),
-                 0 0 12px rgba(123,92,255,0.4);
-  ">
+  <p id="slogan" class="hero-slogan">
     Detailing Done Right.
   </p>
 
@@ -588,17 +55,17 @@
     <hr class="divider">
 
     <h4 style="margin:0 0 8px;">Base Service</h4>
-    <label><input type="radio" name="base" value="exterior" onclick="updateTotal()">Exterior Detail</label>
-    <label><input type="radio" name="base" value="interior" onclick="updateTotal()">Interior Detail</label>
-    <label><input type="radio" name="base" value="full" onclick="updateTotal()">Full Detail</label>
-    <label><input type="radio" name="base" value="signature" onclick="updateTotal()">Signature Package</label>
+    <label><input type="radio" name="base" value="exterior">Exterior Detail</label>
+    <label><input type="radio" name="base" value="interior">Interior Detail</label>
+    <label><input type="radio" name="base" value="full">Full Detail</label>
+    <label><input type="radio" name="base" value="signature">Signature Package</label>
 
     <hr class="divider">
 
     <h4 style="margin:0 0 8px;">Vehicle Size</h4>
-    <label><input type="radio" name="size" value="small" onclick="updateTotal()">Small (Sedan/Coupe)</label>
-    <label><input type="radio" name="size" value="medium" onclick="updateTotal()">Medium (SUV/Crossover)</label>
-    <label><input type="radio" name="size" value="large" onclick="updateTotal()">Large (Truck/Minivan)</label>
+    <label><input type="radio" name="size" value="small">Small (Sedan/Coupe)</label>
+    <label><input type="radio" name="size" value="medium">Medium (SUV/Crossover)</label>
+    <label><input type="radio" name="size" value="large">Large (Truck/Minivan)</label>
 
     <hr class="divider">
 
@@ -607,8 +74,8 @@
     <!-- Tire Shine -->
     <div class="addon-item">
       <label>
-        <input type="checkbox" value="10" onclick="updateTotal()">
-        <span onclick="toggleAddonDesc('addon-tire')">Tire Shine — $10</span>
+        <input type="checkbox" value="10">
+        <span>Tire Shine — $10</span>
       </label>
       <div id="addon-tire" class="addon-desc">
         Tire shine enhances the look of your tires by giving them a clean, dark, refreshed finish.
@@ -620,8 +87,8 @@
     <!-- Seat Removal -->
     <div class="addon-item">
       <label>
-        <input type="checkbox" value="75" onclick="updateTotal()">
-        <span onclick="toggleAddonDesc('addon-seat')">Seat Removal — $75</span>
+        <input type="checkbox" value="75">
+        <span>Seat Removal — $75</span>
       </label>
       <div id="addon-seat" class="addon-desc">
         Seat removal allows for a much deeper interior clean by giving access to areas that normally cannot be reached.
@@ -633,8 +100,8 @@
     <!-- Headlight Restoration -->
     <div class="addon-item">
       <label>
-        <input type="checkbox" value="50" onclick="updateTotal()">
-        <span onclick="toggleAddonDesc('addon-headlight')">Headlight Restoration — $50</span>
+        <input type="checkbox" value="50">
+        <span>Headlight Restoration — $50</span>
       </label>
       <div id="addon-headlight" class="addon-desc">
         Restores clarity and brightness to foggy or yellowed headlights.
@@ -646,8 +113,8 @@
     <!-- Engine Bay Cleaning -->
     <div class="addon-item">
       <label>
-        <input type="checkbox" value="25" onclick="updateTotal()">
-        <span onclick="toggleAddonDesc('addon-engine')">Engine Bay Cleaning — $25</span>
+        <input type="checkbox" value="25">
+        <span>Engine Bay Cleaning — $25</span>
       </label>
       <div id="addon-engine" class="addon-desc">
         Removes dust, grease, and buildup from the engine area using safe cleaning methods.
@@ -659,8 +126,8 @@
     <!-- Full Body Polishing -->
     <div class="addon-item">
       <label>
-        <input type="checkbox" value="150" onclick="updateTotal()">
-        <span onclick="toggleAddonDesc('addon-polish')">Full Body Polishing — $150</span>
+        <input type="checkbox" value="150">
+        <span>Full Body Polishing — $150</span>
       </label>
       <div id="addon-polish" class="addon-desc">
         Reduces light scratches and swirl marks while restoring gloss.
@@ -671,7 +138,7 @@
 
     <h4 style="margin:0 0 8px;">
       Total Estimated Price
-      <span class="info-icon" onclick="togglePriceInfo()">i</span>
+      <span class="info-icon">i</span>
     </h4>
 
     <p id="totalPrice" class="price" style="font-size:22px;margin:5px 0 10px;">$0</p>
@@ -680,7 +147,7 @@
 
     <div id="breakdownBox" style="margin-top:10px;color:#bfbfbf;font-size:14px;line-height:1.5;"></div>
 
-    <button class="book-btn" onclick="openBooking()">Book Now</button>
+    <button class="book-btn">Book Now</button>
   </div>
 </section>
 
@@ -883,21 +350,21 @@
 
 </main>
 <!-- BOOKING POPUP -->
-<div id="bookingPopup" class="booking-popup">
+<dialog id="bookingPopup" class="booking-popup">
   <div class="booking-content">
-    <h3 style="margin-top:0;margin-bottom:10px;font-size:20px;">Book Your Detail</h3>
+    <h3 style="margin-top:0;margin-bottom:10px;font-size:20px;color:#fff;">Book Your Detail</h3>
     <p style="font-size:16px;color:#cfcfcf;margin-bottom:20px;">Choose how you would like to book your appointment.</p>
 
     <a href="mailto:benpapineauwpg@gmail.com" class="booking-link">Email</a>
     <a href="tel:2045099595" class="booking-link">Call</a>
     <a href="sms:2045099595" class="booking-link">Text</a>
 
-    <button class="info-close-btn" style="margin-top:15px;" onclick="openBooking()">Close</button>
+    <button class="info-close-btn close-booking-btn" style="margin-top:15px;">Close</button>
   </div>
-</div>
+</dialog>
 
 <!-- PRICE INFO POPUP -->
-<div id="priceInfoPopup">
+<dialog id="priceInfoPopup">
   <div class="price-info-box">
     <h3>How Your Price Is Calculated</h3>
 
@@ -934,9 +401,9 @@
       <p>The Signature Package includes every add‑on automatically and disables manual selection.</p>
     </div>
 
-    <button class="info-close-btn" style="margin-top:18px;" onclick="togglePriceInfo()">Close</button>
+    <button class="info-close-btn close-price-btn" style="margin-top:18px;">Close</button>
   </div>
-</div>
+</dialog>
 
 <!-- PURPLE EASTER EGG PANEL -->
 <div id="purpleInfo" style="
@@ -963,181 +430,7 @@
 </div>
 
 <!-- FULL UPDATED JAVASCRIPT -->
-<script>
-/* UPDATED BASE PRICES */
-const basePrices = {
-  exterior: { small: 100, medium: 130, large: 160 },
-  interior: { small: 120, medium: 150, large: 180 },
-  full:     { small: 220, medium: 260, large: 300 },
-  signature:{ small: 380, medium: 420, large: 460 }
-};
-
-/* SLOGAN EASTER EGG */
-let sloganClicks = 0;
-function countSloganClick() {
-  sloganClicks++;
-  if (sloganClicks >= 10) {
-    togglePurpleInfo();
-    sloganClicks = 0;
-  }
-}
-
-/* MAIN PRICE CALCULATOR */
-function updateTotal() {
-  let base = document.querySelector('input[name="base"]:checked');
-  let size = document.querySelector('input[name="size"]:checked');
-
-  let total = 0;
-  let summaryParts = [];
-  let breakdownHTML = "";
-
-  /* Add-on elements */
-  const tire = document.querySelector('#addon-tire').previousElementSibling.querySelector('input');
-  const seat = document.querySelector('#addon-seat').previousElementSibling.querySelector('input');
-  const headlight = document.querySelector('#addon-headlight').previousElementSibling.querySelector('input');
-  const engine = document.querySelector('#addon-engine').previousElementSibling.querySelector('input');
-  const polish = document.querySelector('#addon-polish').previousElementSibling.querySelector('input');
-
-  const allAddons = [tire, seat, headlight, engine, polish];
-
-  /* RESET ALL ADD-ONS */
-  allAddons.forEach(cb => {
-    cb.disabled = false;
-    cb.classList.remove("disabled-addon");
-  });
-
-  /* APPLY RULES BASED ON BASE SERVICE */
-  if (base) {
-    switch (base.value) {
-
-      case "exterior":
-        seat.disabled = true;
-        seat.classList.add("disabled-addon");
-        break;
-
-      case "interior":
-        tire.disabled = true;
-        headlight.disabled = true;
-        engine.disabled = true;
-        polish.disabled = true;
-
-        tire.classList.add("disabled-addon");
-        headlight.classList.add("disabled-addon");
-        engine.classList.add("disabled-addon");
-        polish.classList.add("disabled-addon");
-        break;
-
-      case "full":
-        /* All add-ons enabled */
-        break;
-
-      case "signature":
-        /* Disable ALL add-ons */
-        allAddons.forEach(cb => {
-          cb.disabled = true;
-          cb.checked = false;
-          cb.classList.add("disabled-addon");
-        });
-        break;
-    }
-  }
-
-  /* BASE + SIZE PRICE */
-  if (base && size) {
-    let b = base.value;
-    let s = size.value;
-
-    let baseCost = basePrices[b][s];
-    total += baseCost;
-
-    let baseLabel = {
-      exterior: "Exterior Detail",
-      interior: "Interior Detail",
-      full: "Full Detail",
-      signature: "Signature Package"
-    }[b];
-
-    let sizeLabel = {
-      small: "Small (Sedan/Coupe)",
-      medium: "Medium (SUV/Crossover)",
-      large: "Large (Truck/Minivan)"
-    }[s];
-
-    summaryParts.push(`${baseLabel} — ${sizeLabel}`);
-    breakdownHTML += `<strong>${baseLabel} (${sizeLabel})</strong>: $${baseCost}<br>`;
-  }
-
-  /* SIGNATURE PACKAGE OVERRIDE */
-  if (base && base.value === "signature") {
-    summaryParts = ["Signature Package — All services included"];
-    breakdownHTML = `<strong>Signature Package</strong><br>All services + all add-ons included`;
-
-    document.getElementById("totalPrice").innerText = "$" + total;
-    document.getElementById("summaryBox").innerText = summaryParts.join(" | ");
-    document.getElementById("breakdownBox").innerHTML = breakdownHTML;
-    return;
-  }
-
-  /* ADD-ONS */
-  const addonCheckboxes = document.querySelectorAll('.addon-item input[type="checkbox"]');
-  let addonLabels = [];
-
-  addonCheckboxes.forEach(cb => {
-    if (cb.checked && !cb.disabled) {
-      let addonCost = parseFloat(cb.value || 0);
-      total += addonCost;
-
-      const span = cb.parentElement.querySelector('span');
-      let label = span ? span.textContent.trim() : "Add-on";
-
-      addonLabels.push(label);
-      breakdownHTML += `${label}: $${addonCost}<br>`;
-    }
-  });
-
-  if (addonLabels.length > 0) {
-    summaryParts.push("Add‑ons: " + addonLabels.join(", "));
-  }
-
-  /* UPDATE UI */
-  document.getElementById("totalPrice").innerText = "$" + total;
-  document.getElementById("summaryBox").innerText =
-    summaryParts.length > 0 ? summaryParts.join(" | ") : "No selections yet.";
-  document.getElementById("breakdownBox").innerHTML = breakdownHTML;
-}
-
-/* TOGGLE ADD-ON DESCRIPTION */
-function toggleAddonDesc(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.toggle("visible");
-}
-
-/* BOOKING POPUP */
-function openBooking() {
-  document.getElementById("bookingPopup").classList.toggle("visible");
-}
-
-/* PRICE INFO POPUP */
-function togglePriceInfo() {
-  document.getElementById("priceInfoPopup").classList.toggle("visible");
-}
-
-/* EASTER EGG PANEL */
-function togglePurpleInfo() {
-  const panel = document.getElementById("purpleInfo");
-  panel.style.bottom = panel.style.bottom === "0px" ? "-200px" : "0px";
-}
-
-/* CLOSE EASTER EGG WHEN CLICKING OUTSIDE */
-document.addEventListener("click", function(e) {
-  const panel = document.getElementById("purpleInfo");
-  const slogan = document.querySelector("p[onclick='countSloganClick()']");
-  if (!panel.contains(e.target) && e.target !== slogan) {
-    panel.style.bottom = "-200px";
-  }
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
